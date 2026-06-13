@@ -1,0 +1,939 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Copa do Mundo 2026 - Todos os Jogos</title>
+<style>
+:root {
+  --bg: #07111f;
+  --panel: rgba(15, 23, 42, .92);
+  --panel2: rgba(30, 41, 59, .85);
+  --text: #f8fafc;
+  --muted: #aab6c8;
+  --line: rgba(148, 163, 184, .18);
+  --green: #22c55e;
+  --yellow: #facc15;
+  --cyan: #38bdf8;
+  --red: #fb7185;
+  --edge-rgb: 34,197,94;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: "Segoe UI", Arial, sans-serif;
+  color: var(--text);
+  background:
+    radial-gradient(circle at top left, rgba(34,197,94,.16), transparent 35%),
+    radial-gradient(circle at top right, rgba(250,204,21,.12), transparent 30%),
+    linear-gradient(135deg, #030712, #0f172a 55%, #07111f);
+  padding: 20px;
+}
+
+.container {
+  max-width: 1180px;
+  margin: 0 auto;
+}
+
+.hero {
+  border-top: 4px solid rgb(var(--edge-rgb));
+  background: var(--panel);
+  border-radius: 20px;
+  padding: 24px;
+  box-shadow: 0 0 22px rgba(var(--edge-rgb), .18);
+  margin-bottom: 18px;
+}
+
+h1 {
+  margin: 0;
+  font-size: clamp(26px, 4vw, 44px);
+  letter-spacing: .5px;
+}
+
+.autor {
+  text-align: center;
+  margin-top: 10px;
+  margin-bottom: 12px;
+  font-size: clamp(18px, 3vw, 26px);
+  font-weight: 800;
+  color: #f5c542;
+  letter-spacing: .04em;
+  text-shadow: 0 0 14px rgba(245,197,66,.35);
+}
+
+.subtitle {
+  margin-top: 8px;
+  color: var(--muted);
+  font-size: 16px;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+  margin: 18px 0;
+}
+
+.card {
+  background: var(--panel2);
+  border-radius: 16px;
+  padding: 16px;
+  border-top: 4px solid var(--cyan);
+  box-shadow: 0 0 18px rgba(56,189,248,.12);
+}
+
+.card.brazil {
+  border-top-color: var(--green);
+  box-shadow: 0 0 18px rgba(34,197,94,.16);
+}
+
+.label {
+  color: var(--muted);
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+}
+
+.value {
+  margin-top: 6px;
+  font-weight: 800;
+  font-size: 24px;
+}
+
+.toolbar {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 14px;
+  flex-wrap: wrap;
+}
+
+button, select {
+  background: rgba(15,23,42,.92);
+  color: var(--text);
+  border: 1px solid rgba(148,163,184,.28);
+  border-radius: 12px;
+  padding: 11px 13px;
+  font-size: 15px;
+}
+
+button {
+  cursor: pointer;
+  font-weight: 700;
+}
+
+button.active {
+  background: linear-gradient(135deg, rgba(34,197,94,.35), rgba(250,204,21,.22));
+  border-color: rgba(250,204,21,.65);
+}
+
+.table-wrap {
+  overflow-x: auto;
+  border-radius: 18px;
+  background: rgba(15,23,42,.78);
+  border: 1px solid rgba(148,163,184,.18);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 780px;
+}
+
+thead th {
+  position: sticky;
+  top: 0;
+  z-index: 3;
+  background: #0b1220;
+  color: #e2e8f0;
+  text-align: left;
+  padding: 14px;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  border-bottom: 1px solid var(--line);
+}
+
+tbody tr {
+  background: rgba(30,41,59,.62);
+  transition: .22s ease;
+}
+
+tbody tr:hover {
+  background: rgba(51,65,85,.88);
+  filter: brightness(1.08);
+}
+
+td {
+  padding: 14px;
+  border-bottom: 1px solid var(--line);
+  vertical-align: middle;
+}
+
+tr.brasil {
+  background:
+    linear-gradient(90deg, rgba(34,197,94,.35), rgba(250,204,21,.22), rgba(34,197,94,.12));
+  box-shadow: inset 5px 0 0 var(--green);
+  font-weight: 800;
+}
+
+tr.brasil td {
+  border-bottom-color: rgba(250,204,21,.35);
+}
+
+tr.brasil .match {
+  color: #fff7ad;
+  text-shadow: 0 0 12px rgba(250,204,21,.25);
+}
+
+.date, .time {
+  white-space: nowrap;
+  font-weight: 700;
+}
+
+.match {
+  font-size: 16px;
+}
+
+.versus {
+  color: var(--muted);
+  margin: 0 8px;
+  font-weight: 600;
+}
+
+.group-pill {
+  display: inline-block;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: rgba(56,189,248,.12);
+  border: 1px solid rgba(56,189,248,.22);
+  color: #bae6fd;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.status {
+  display: inline-block;
+  border-radius: 999px;
+  padding: 6px 10px;
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.done {
+  background: rgba(34,197,94,.14);
+  color: #bbf7d0;
+  border: 1px solid rgba(34,197,94,.28);
+}
+
+.scheduled {
+  background: rgba(250,204,21,.12);
+  color: #fef08a;
+  border: 1px solid rgba(250,204,21,.28);
+}
+
+.footer {
+  margin-top: 14px;
+  color: var(--muted);
+  font-size: 13px;
+  text-align: center;
+}
+
+@media (max-width: 780px) {
+  body { padding: 12px; }
+  .hero { padding: 18px; border-radius: 16px; }
+  .cards { grid-template-columns: repeat(2, 1fr); }
+  .toolbar { display: grid; grid-template-columns: 1fr 1fr; }
+  button, select { width: 100%; }
+  td, th { padding: 11px; font-size: 13px; }
+  .match { font-size: 14px; }
+}
+
+.toggle-brasil {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.filter-btn {
+  background: rgba(15,23,42,.92);
+  color: var(--text);
+  border: 1px solid rgba(148,163,184,.28);
+  border-radius: 12px;
+  padding: 11px 13px;
+  font-size: 15px;
+  cursor: pointer;
+  font-weight: 800;
+  text-align: center;
+  user-select: none;
+  -webkit-user-select: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 46px;
+}
+
+.all-btn {
+  background: linear-gradient(135deg, rgba(34,197,94,.35), rgba(250,204,21,.22));
+  border-color: rgba(250,204,21,.65);
+}
+
+.brazil-btn {
+  background: rgba(15,23,42,.92);
+}
+
+#toggleBrasil:checked ~ .toolbar .all-btn {
+  background: rgba(15,23,42,.92);
+  border-color: rgba(148,163,184,.28);
+}
+
+#toggleBrasil:checked ~ .toolbar .brazil-btn {
+  background: linear-gradient(135deg, rgba(34,197,94,.45), rgba(250,204,21,.30));
+  border-color: rgba(250,204,21,.75);
+  box-shadow: 0 0 18px rgba(34,197,94,.22);
+}
+
+#toggleBrasil:checked ~ .table-wrap tbody tr:not(.brasil) {
+  display: none !important;
+}
+
+#toggleBrasil:checked ~ .table-wrap tbody tr.brasil {
+  display: table-row !important;
+}
+
+@media (max-width: 780px) {
+  .toolbar {
+    grid-template-columns: 1fr 1fr !important;
+  }
+  .filter-btn {
+    width: 100%;
+    font-size: 15px;
+  }
+}
+
+</style>
+</head>
+<body>
+<div class="container">
+  <section class="hero">
+    <h1>🏆 Copa do Mundo 2026</h1>
+    <div class="autor">Por Renato Neves</div>
+    <div class="subtitle">Tabela completa da fase de grupos • Horário de Brasília • Botão Brasil corrigido</div>
+  </section>
+
+  <section class="cards">
+    <div class="card"><div class="label">Jogos listados</div><div class="value">72</div></div>
+    <div class="card brazil"><div class="label">Jogos do Brasil</div><div class="value">3</div></div>
+    <div class="card"><div class="label">Grupos</div><div class="value">12</div></div>
+    <div class="card brazil"><div class="label">Grupo do Brasil</div><div class="value">C</div></div>
+  </section>
+
+  <input type="checkbox" id="toggleBrasil" class="toggle-brasil">
+
+  <div class="toolbar">
+    <label for="toggleBrasil" class="filter-btn all-btn">Todos os jogos</label>
+    <label for="toggleBrasil" class="filter-btn brazil-btn">Somente Brasil 🇧🇷</label>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Data</th>
+          <th>Horário</th>
+          <th>Grupo</th>
+          <th>Jogo</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody id="tbody">
+        
+    <tr class="" data-grupo="Grupo A" data-brasil="false">
+      <td class="date">11/06/2026</td>
+      <td class="time">16:00</td>
+      <td><span class="group-pill">Grupo A</span></td>
+      <td class="match">🇲🇽 México <span class='versus'>x</span> 🇿🇦 África do Sul</td>
+      <td><span class="status done">Concluído</span></td>
+    </tr>
+
+    <tr class="" data-grupo="Grupo A" data-brasil="false">
+      <td class="date">11/06/2026</td>
+      <td class="time">23:00</td>
+      <td><span class="group-pill">Grupo A</span></td>
+      <td class="match">🇰🇷 Coreia do Sul <span class='versus'>x</span> 🇨🇿 Tchéquia</td>
+      <td><span class="status done">Concluído</span></td>
+    </tr>
+
+    <tr class="" data-grupo="Grupo B" data-brasil="false">
+      <td class="date">12/06/2026</td>
+      <td class="time">16:00</td>
+      <td><span class="group-pill">Grupo B</span></td>
+      <td class="match">🇨🇦 Canadá <span class='versus'>x</span> 🇧🇦 Bósnia e Herzegovina</td>
+      <td><span class="status done">Concluído</span></td>
+    </tr>
+
+    <tr class="" data-grupo="Grupo D" data-brasil="false">
+      <td class="date">12/06/2026</td>
+      <td class="time">22:00</td>
+      <td><span class="group-pill">Grupo D</span></td>
+      <td class="match">🇺🇸 Estados Unidos <span class='versus'>x</span> 🇵🇾 Paraguai</td>
+      <td><span class="status scheduled">Agendado</span></td>
+    </tr>
+
+    <tr class="" data-grupo="Grupo B" data-brasil="false">
+      <td class="date">13/06/2026</td>
+      <td class="time">16:00</td>
+      <td><span class="group-pill">Grupo B</span></td>
+      <td class="match">🇶🇦 Catar <span class='versus'>x</span> 🇨🇭 Suíça</td>
+      <td><span class="status scheduled">Agendado</span></td>
+    </tr>
+
+    <tr class="brasil" data-grupo="Grupo C" data-brasil="true">
+      <td class="date">13/06/2026</td>
+      <td class="time">19:00</td>
+      <td><span class="group-pill">Grupo C</span></td>
+      <td class="match">🇧🇷 Brasil <span class='versus'>x</span> 🇲🇦 Marrocos</td>
+      <td><span class="status scheduled">Agendado</span></td>
+    </tr>
+
+    <tr class="" data-grupo="Grupo C" data-brasil="false">
+      <td class="date">13/06/2026</td>
+      <td class="time">22:00</td>
+      <td><span class="group-pill">Grupo C</span></td>
+      <td class="match">🇭🇹 Haiti <span class='versus'>x</span> 🏴󠁧󠁢󠁳󠁣󠁴󠁿 Escócia</td>
+      <td><span class="status scheduled">Agendado</span></td>
+    </tr>
+
+    <tr class="" data-grupo="Grupo D" data-brasil="false">
+      <td class="date">14/06/2026</td>
+      <td class="time">01:00</td>
+      <td><span class="group-pill">Grupo D</span></td>
+      <td class="match">🇦🇺 Austrália <span class='versus'>x</span> 🇹🇷 Turquia</td>
+      <td><span class="status scheduled">Agendado</span></td>
+    </tr>
+
+    <tr class="" data-grupo="Grupo E" data-brasil="false">
+      <td class="date">14/06/2026</td>
+      <td class="time">14:00</td>
+      <td><span class="group-pill">Grupo E</span></td>
+      <td class="match">🇩🇪 Alemanha <span class='versus'>x</span> 🇨🇼 Curaçao</td>
+      <td><span class="status scheduled">Agendado</span></td>
+    </tr>
+
+    <tr class="" data-grupo="Grupo F" data-brasil="false">
+      <td class="date">14/06/2026</td>
+      <td class="time">17:00</td>
+      <td><span class="group-pill">Grupo F</span></td>
+      <td class="match">🇳🇱 Holanda <span class='versus'>x</span> 🇯🇵 Japão</td>
+      <td><span class="status scheduled">Agendado</span></td>
+    </tr>
+
+    <tr class="" data-grupo="Grupo E" data-brasil="false">
+      <td class="date">14/06/2026</td>
+      <td class="time">20:00</td>
+      <td><span class="group-pill">Grupo E</span></td>
+      <td class="match">🇨🇮 Costa do Marfim <span class='versus'>x</span> 🇪🇨 Equador</td>
+      <td><span class="status scheduled">Agendado</span></td>
+    </tr>
+
+    <tr class="" data-grupo="Grupo F" data-brasil="false">
+      <td class="date">14/06/2026</td>
+      <td class="time">23:00</td>
+      <td><span class="group-pill">Grupo F</span></td>
+      <td class="match">🇸🇪 Suécia <span class='versus'>x</span> 🇹🇳 Tunísia</td>
+      <td><span class="status scheduled">Agendado</span></td>
+    </tr>
+
+    <tr class="" data-grupo="Grupo H" data-brasil="false">
+      <td class="date">15/06/2026</td>
+      <td class="time">13:00</td>
+      <td><span class="group-pill">Grupo H</span></td>
+      <td class="match">🇪🇸 Espanha <span class='versus'>x</span> 🇨🇻 Cabo Verde</td>
+      <td><span class="status scheduled">Agendado</span></td>
+    </tr>
+
+    <tr class="" data-grupo="Grupo G" data-brasil="false">
+      <td class="date">15/06/2026</td>
+      <td class="time">16:00</td>
+      <td><span class="group-pill">Grupo G</span></td>
+      <td class="match">🇧🇪 Bélgica <span class='versus'>x</span> 🇪🇬 Egito</td>
+      <td><span class="status scheduled">Agendado</span></td>
+    </tr>
+
+    <tr class="" data-grupo="Grupo H" data-brasil="false">
+      <td class="date">15/06/2026</td>
+      <td class="time">19:00</td>
+      <td><span class="group-pill">Grupo H</span></td>
+      <td class="match">🇸🇦 Arábia Saudita <span class='versus'>x</span> 🇺🇾 Uruguai</td>
+      <td><span class="status scheduled">Agendado</span></td>
+    </tr>
+
+    <tr class="" data-grupo="Grupo G" data-brasil="false">
+      <td class="date">15/06/2026</td>
+      <td class="time">22:00</td>
+      <td><span class="group-pill">Grupo G</span></td>
+      <td class="match">🇮🇷 Irã <span class='versus'>x</span> 🇳🇿 Nova Zelândia</td>
+      <td><span class="status scheduled">Agendado</span></td>
+    </tr>
+
+    <tr class="" data-grupo="Grupo I" data-brasil="false">
+      <td class="date">16/06/2026</td>
+      <td class="time">16:00</td>
+      <td><span class="group-pill">Grupo I</span></td>
+      <td class="match">🇫🇷 França <span class='versus'>x</span> 🇸🇳 Senegal</td>
+      <td><span class="status scheduled">Agendado</span></td>
+    </tr>
+
+    <tr class="" data-grupo="Grupo I" data-brasil="false">
+      <td class="date">16/06/2026</td>
+      <td class="time">19:00</td>
+      <td><span class="group-pill">Grupo I</span></td>
+      <td class="match">🇮🇶 Iraque <span class='versus'>x</span> 🇳🇴 Noruega</td>
+      <td><span class="status scheduled">Agendado</span></td>
+    </tr>
+
+    <tr class="" data-grupo="Grupo J" data-brasil="false">
+      <td class="date">16/06/2026</td>
+      <td class="time">22:00</td>
+      <td><span class="group-pill">Grupo J</span></td>
+      <td class="match">🇦🇷 Argentina <span class='versus'>x</span> 🇩🇿 Argélia</td>
+      <td><span class="status scheduled">Agendado</span></td>
+    </tr>
+
+    <tr class="" data-grupo="Grupo J" data-brasil="false">
+      <td class="date">17/06/2026</td>
+      <td class="time">01:00</td>
+      <td><span class="group-pill">Grupo J</span></td>
+      <td class="match">🇦🇹 Áustria <span class='versus'>x</span> 🇯🇴 Jordânia</td>
+      <td><span class="status scheduled">Agendado</span></td>
+    </tr>
+
+    <tr class="" data-grupo="Grupo K" data-brasil="false">
+      <td class="date">17/06/2026</td>
+      <td class="time">14:00</td>
+      <td><span class="group-pill">Grupo K</span></td>
+      <td class="match">🇵🇹 Portugal <span class='versus'>x</span> 🇨🇩 RD Congo</td>
+      <td><span class="status scheduled">Agendado</span></td>
+    </tr>
+
+    <tr class="" data-grupo="Grupo L" data-brasil="false">
+      <td class="date">17/06/2026</td>
+      <td class="time">17:00</td>
+      <td><span class="group-pill">Grupo L</span></td>
+      <td class="match">🏴󠁧󠁢󠁥󠁮󠁧󠁿 Inglaterra <span class='versus'>x</span> 🇭🇷 Croácia</td>
+      <td><span class="status scheduled">Agendado</span></td>
+    </tr>
+
+    <tr class="" data-grupo="Grupo L" data-brasil="false">
+      <td class="date">17/06/2026</td>
+      <td class="time">20:00</td>
+      <td><span class="group-pill">Grupo L</span></td>
+      <td class="match">🇬🇭 Gana <span class='versus'>x</span> 🇵🇦 Panamá</td>
+      <td><span class="status scheduled">Agendado</span></td>
+    </tr>
+
+    <tr class="" data-grupo="Grupo K" data-brasil="false">
+      <td class="date">17/06/2026</td>
+      <td class="time">23:00</td>
+      <td><span class="group-pill">Grupo K</span></td>
+      <td class="match">🇺🇿 Uzbequistão <span class='versus'>x</span> 🇨🇴 Colômbia</td>
+      <td><span class="status scheduled">Agendado</span></td>
+    </tr>
+
+    <tr class="" data-grupo="Grupo A" data-brasil="false">
+      <td class="date">18/06/2026</td>
+      <td class="time">13:00</td>
+      <td><span class="group-pill">Grupo A</span></td>
+      <td class="match">🇨🇿 Tchéquia <span class='versus'>x</span> 🇿🇦 África do Sul</td>
+      <td><span class="status scheduled">Agendado</span></td>
+    </tr>
+
+    <tr class="" data-grupo="Grupo B" data-brasil="false">
+      <td class="date">18/06/2026</td>
+      <td class="time">16:00</td>
+      <td><span class="group-pill">Grupo B</span></td>
+      <td class="match">🇨🇭 Suíça <span class='versus'>x</span> 🇧🇦 Bósnia e Herzegovina</td>
+      <td><span class="status scheduled">Agendado</span></td>
+    </tr>
+
+    <tr class="" data-grupo="Grupo B" data-brasil="false">
+      <td class="date">18/06/2026</td>
+      <td class="time">19:00</td>
+      <td><span class="group-pill">Grupo B</span></td>
+      <td class="match">🇨🇦 Canadá <span class='versus'>x</span> 🇶🇦 Catar</td>
+      <td><span class="status scheduled">Agendado</span></td>
+    </tr>
+
+    <tr class="" data-grupo="Grupo A" data-brasil="false">
+      <td class="date">18/06/2026</td>
+      <td class="time">22:00</td>
+      <td><span class="group-pill">Grupo A</span></td>
+      <td class="match">🇲🇽 México <span class='versus'>x</span> 🇰🇷 Coreia do Sul</td>
+      <td><span class="status scheduled">Agendado</span></td>
+    </tr>
+
+    <tr class="" data-grupo="Grupo D" data-brasil="false">
+      <td class="date">19/06/2026</td>
+      <td class="time">16:00</td>
+      <td><span class="group-pill">Grupo D</span></td>
+      <td class="match">🇺🇸 Estados Unidos <span class='versus'>x</span> 🇦🇺 Austrália</td>
+      <td><span class="status scheduled">Agendado</span></td>
+    </tr>
+
+    <tr class="" data-grupo="Grupo C" data-brasil="false">
+      <td class="date">19/06/2026</td>
+      <td class="time">19:00</td>
+      <td><span class="group-pill">Grupo C</span></td>
+      <td class="match">🏴󠁧󠁢󠁳󠁣󠁴󠁿 Escócia <span class='versus'>x</span> 🇲🇦 Marrocos</td>
+      <td><span class="status scheduled">Agendado</span></td>
+    </tr>
+
+    <tr class="brasil" data-grupo="Grupo C" data-brasil="true">
+      <td class="date">19/06/2026</td>
+      <td class="time">21:30</td>
+      <td><span class="group-pill">Grupo C</span></td>
+      <td class="match">🇧🇷 Brasil <span class='versus'>x</span> 🇭🇹 Haiti</td>
+      <td><span class="status scheduled">Agendado</span></td>
+    </tr>
+
+    <tr class="" data-grupo="Grupo D" data-brasil="false">
+      <td class="date">20/06/2026</td>
+      <td class="time">00:00</td>
+      <td><span class="group-pill">Grupo D</span></td>
+      <td class="match">🇹🇷 Turquia <span class='versus'>x</span> 🇵🇾 Paraguai</td>
+      <td><span class="status scheduled">Agendado</span></td>
+    </tr>
+
+    <tr class="" data-grupo="Grupo F" data-brasil="false">
+      <td class="date">20/06/2026</td>
+      <td class="time">14:00</td>
+      <td><span class="group-pill">Grupo F</span></td>
+      <td class="match">🇳🇱 Holanda <span class='versus'>x</span> 🇸🇪 Suécia</td>
+      <td><span class="status scheduled">Agendado</span></td>
+    </tr>
+
+    <tr class="" data-grupo="Grupo E" data-brasil="false">
+      <td class="date">20/06/2026</td>
+      <td class="time">17:00</td>
+      <td><span class="group-pill">Grupo E</span></td>
+      <td class="match">🇩🇪 Alemanha <span class='versus'>x</span> 🇨🇮 Costa do Marfim</td>
+      <td><span class="status scheduled">Agendado</span></td>
+    </tr>
+
+    <tr class="" data-grupo="Grupo E" data-brasil="false">
+      <td class="date">20/06/2026</td>
+      <td class="time">21:00</td>
+      <td><span class="group-pill">Grupo E</span></td>
+      <td class="match">🇪🇨 Equador <span class='versus'>x</span> 🇨🇼 Curaçao</td>
+      <td><span class="status scheduled">Agendado</span></td>
+    </tr>
+
+    <tr class="" data-grupo="Grupo F" data-brasil="false">
+      <td class="date">21/06/2026</td>
+      <td class="time">01:00</td>
+      <td><span class="group-pill">Grupo F</span></td>
+      <td class="match">🇹🇳 Tunísia <span class='versus'>x</span> 🇯🇵 Japão</td>
+      <td><span class="status scheduled">Agendado</span></td>
+    </tr>
+
+    <tr class="" data-grupo="Grupo H" data-brasil="false">
+      <td class="date">21/06/2026</td>
+      <td class="time">13:00</td>
+      <td><span class="group-pill">Grupo H</span></td>
+      <td class="match">🇪🇸 Espanha <span class='versus'>x</span> 🇸🇦 Arábia Saudita</td>
+      <td><span class="status scheduled">Agendado</span></td>
+    </tr>
+
+    <tr class="" data-grupo="Grupo G" data-brasil="false">
+      <td class="date">21/06/2026</td>
+      <td class="time">16:00</td>
+      <td><span class="group-pill">Grupo G</span></td>
+      <td class="match">🇧🇪 Bélgica <span class='versus'>x</span> 🇮🇷 Irã</td>
+      <td><span class="status scheduled">Agendado</span></td>
+    </tr>
+
+    <tr class="" data-grupo="Grupo H" data-brasil="false">
+      <td class="date">21/06/2026</td>
+      <td class="time">19:00</td>
+      <td><span class="group-pill">Grupo H</span></td>
+      <td class="match">🇺🇾 Uruguai <span class='versus'>x</span> 🇨🇻 Cabo Verde</td>
+      <td><span class="status scheduled">Agendado</span></td>
+    </tr>
+
+    <tr class="" data-grupo="Grupo G" data-brasil="false">
+      <td class="date">21/06/2026</td>
+      <td class="time">22:00</td>
+      <td><span class="group-pill">Grupo G</span></td>
+      <td class="match">🇳🇿 Nova Zelândia <span class='versus'>x</span> 🇪🇬 Egito</td>
+      <td><span class="status scheduled">Agendado</span></td>
+    </tr>
+
+    <tr class="" data-grupo="Grupo J" data-brasil="false">
+      <td class="date">22/06/2026</td>
+      <td class="time">14:00</td>
+      <td><span class="group-pill">Grupo J</span></td>
+      <td class="match">🇦🇷 Argentina <span class='versus'>x</span> 🇦🇹 Áustria</td>
+      <td><span class="status scheduled">Agendado</span></td>
+    </tr>
+
+    <tr class="" data-grupo="Grupo I" data-brasil="false">
+      <td class="date">22/06/2026</td>
+      <td class="time">18:00</td>
+      <td><span class="group-pill">Grupo I</span></td>
+      <td class="match">🇫🇷 França <span class='versus'>x</span> 🇮🇶 Iraque</td>
+      <td><span class="status scheduled">Agendado</span></td>
+    </tr>
+
+    <tr class="" data-grupo="Grupo I" data-brasil="false">
+      <td class="date">22/06/2026</td>
+      <td class="time">21:00</td>
+      <td><span class="group-pill">Grupo I</span></td>
+      <td class="match">🇳🇴 Noruega <span class='versus'>x</span> 🇸🇳 Senegal</td>
+      <td><span class="status scheduled">Agendado</span></td>
+    </tr>
+
+    <tr class="" data-grupo="Grupo J" data-brasil="false">
+      <td class="date">23/06/2026</td>
+      <td class="time">00:00</td>
+      <td><span class="group-pill">Grupo J</span></td>
+      <td class="match">🇯🇴 Jordânia <span class='versus'>x</span> 🇩🇿 Argélia</td>
+      <td><span class="status scheduled">Agendado</span></td>
+    </tr>
+
+    <tr class="" data-grupo="Grupo K" data-brasil="false">
+      <td class="date">23/06/2026</td>
+      <td class="time">14:00</td>
+      <td><span class="group-pill">Grupo K</span></td>
+      <td class="match">🇵🇹 Portugal <span class='versus'>x</span> 🇺🇿 Uzbequistão</td>
+      <td><span class="status scheduled">Agendado</span></td>
+    </tr>
+
+    <tr class="" data-grupo="Grupo L" data-brasil="false">
+      <td class="date">23/06/2026</td>
+      <td class="time">17:00</td>
+      <td><span class="group-pill">Grupo L</span></td>
+      <td class="match">🏴󠁧󠁢󠁥󠁮󠁧󠁿 Inglaterra <span class='versus'>x</span> 🇬🇭 Gana</td>
+      <td><span class="status scheduled">Agendado</span></td>
+    </tr>
+
+    <tr class="" data-grupo="Grupo L" data-brasil="false">
+      <td class="date">23/06/2026</td>
+      <td class="time">20:00</td>
+      <td><span class="group-pill">Grupo L</span></td>
+      <td class="match">🇵🇦 Panamá <span class='versus'>x</span> 🇭🇷 Croácia</td>
+      <td><span class="status scheduled">Agendado</span></td>
+    </tr>
+
+    <tr class="" data-grupo="Grupo K" data-brasil="false">
+      <td class="date">23/06/2026</td>
+      <td class="time">23:00</td>
+      <td><span class="group-pill">Grupo K</span></td>
+      <td class="match">🇨🇴 Colômbia <span class='versus'>x</span> 🇨🇩 RD Congo</td>
+      <td><span class="status scheduled">Agendado</span></td>
+    </tr>
+
+    <tr class="" data-grupo="Grupo B" data-brasil="false">
+      <td class="date">24/06/2026</td>
+      <td class="time">16:00</td>
+      <td><span class="group-pill">Grupo B</span></td>
+      <td class="match">🇨🇭 Suíça <span class='versus'>x</span> 🇨🇦 Canadá</td>
+      <td><span class="status scheduled">Agendado</span></td>
+    </tr>
+
+    <tr class="" data-grupo="Grupo B" data-brasil="false">
+      <td class="date">24/06/2026</td>
+      <td class="time">16:00</td>
+      <td><span class="group-pill">Grupo B</span></td>
+      <td class="match">🇧🇦 Bósnia e Herzegovina <span class='versus'>x</span> 🇶🇦 Catar</td>
+      <td><span class="status scheduled">Agendado</span></td>
+    </tr>
+
+    <tr class="brasil" data-grupo="Grupo C" data-brasil="true">
+      <td class="date">24/06/2026</td>
+      <td class="time">19:00</td>
+      <td><span class="group-pill">Grupo C</span></td>
+      <td class="match">🏴󠁧󠁢󠁳󠁣󠁴󠁿 Escócia <span class='versus'>x</span> 🇧🇷 Brasil</td>
+      <td><span class="status scheduled">Agendado</span></td>
+    </tr>
+
+    <tr class="" data-grupo="Grupo C" data-brasil="false">
+      <td class="date">24/06/2026</td>
+      <td class="time">19:00</td>
+      <td><span class="group-pill">Grupo C</span></td>
+      <td class="match">🇲🇦 Marrocos <span class='versus'>x</span> 🇭🇹 Haiti</td>
+      <td><span class="status scheduled">Agendado</span></td>
+    </tr>
+
+    <tr class="" data-grupo="Grupo A" data-brasil="false">
+      <td class="date">24/06/2026</td>
+      <td class="time">22:00</td>
+      <td><span class="group-pill">Grupo A</span></td>
+      <td class="match">🇨🇿 Tchéquia <span class='versus'>x</span> 🇲🇽 México</td>
+      <td><span class="status scheduled">Agendado</span></td>
+    </tr>
+
+    <tr class="" data-grupo="Grupo A" data-brasil="false">
+      <td class="date">24/06/2026</td>
+      <td class="time">22:00</td>
+      <td><span class="group-pill">Grupo A</span></td>
+      <td class="match">🇿🇦 África do Sul <span class='versus'>x</span> 🇰🇷 Coreia do Sul</td>
+      <td><span class="status scheduled">Agendado</span></td>
+    </tr>
+
+    <tr class="" data-grupo="Grupo E" data-brasil="false">
+      <td class="date">25/06/2026</td>
+      <td class="time">17:00</td>
+      <td><span class="group-pill">Grupo E</span></td>
+      <td class="match">🇪🇨 Equador <span class='versus'>x</span> 🇩🇪 Alemanha</td>
+      <td><span class="status scheduled">Agendado</span></td>
+    </tr>
+
+    <tr class="" data-grupo="Grupo E" data-brasil="false">
+      <td class="date">25/06/2026</td>
+      <td class="time">17:00</td>
+      <td><span class="group-pill">Grupo E</span></td>
+      <td class="match">🇨🇼 Curaçao <span class='versus'>x</span> 🇨🇮 Costa do Marfim</td>
+      <td><span class="status scheduled">Agendado</span></td>
+    </tr>
+
+    <tr class="" data-grupo="Grupo F" data-brasil="false">
+      <td class="date">25/06/2026</td>
+      <td class="time">20:00</td>
+      <td><span class="group-pill">Grupo F</span></td>
+      <td class="match">🇹🇳 Tunísia <span class='versus'>x</span> 🇳🇱 Holanda</td>
+      <td><span class="status scheduled">Agendado</span></td>
+    </tr>
+
+    <tr class="" data-grupo="Grupo F" data-brasil="false">
+      <td class="date">25/06/2026</td>
+      <td class="time">20:00</td>
+      <td><span class="group-pill">Grupo F</span></td>
+      <td class="match">🇯🇵 Japão <span class='versus'>x</span> 🇸🇪 Suécia</td>
+      <td><span class="status scheduled">Agendado</span></td>
+    </tr>
+
+    <tr class="" data-grupo="Grupo D" data-brasil="false">
+      <td class="date">25/06/2026</td>
+      <td class="time">23:00</td>
+      <td><span class="group-pill">Grupo D</span></td>
+      <td class="match">🇹🇷 Turquia <span class='versus'>x</span> 🇺🇸 Estados Unidos</td>
+      <td><span class="status scheduled">Agendado</span></td>
+    </tr>
+
+    <tr class="" data-grupo="Grupo D" data-brasil="false">
+      <td class="date">25/06/2026</td>
+      <td class="time">23:00</td>
+      <td><span class="group-pill">Grupo D</span></td>
+      <td class="match">🇵🇾 Paraguai <span class='versus'>x</span> 🇦🇺 Austrália</td>
+      <td><span class="status scheduled">Agendado</span></td>
+    </tr>
+
+    <tr class="" data-grupo="Grupo I" data-brasil="false">
+      <td class="date">26/06/2026</td>
+      <td class="time">16:00</td>
+      <td><span class="group-pill">Grupo I</span></td>
+      <td class="match">🇳🇴 Noruega <span class='versus'>x</span> 🇫🇷 França</td>
+      <td><span class="status scheduled">Agendado</span></td>
+    </tr>
+
+    <tr class="" data-grupo="Grupo I" data-brasil="false">
+      <td class="date">26/06/2026</td>
+      <td class="time">16:00</td>
+      <td><span class="group-pill">Grupo I</span></td>
+      <td class="match">🇸🇳 Senegal <span class='versus'>x</span> 🇮🇶 Iraque</td>
+      <td><span class="status scheduled">Agendado</span></td>
+    </tr>
+
+    <tr class="" data-grupo="Grupo H" data-brasil="false">
+      <td class="date">26/06/2026</td>
+      <td class="time">21:00</td>
+      <td><span class="group-pill">Grupo H</span></td>
+      <td class="match">🇺🇾 Uruguai <span class='versus'>x</span> 🇪🇸 Espanha</td>
+      <td><span class="status scheduled">Agendado</span></td>
+    </tr>
+
+    <tr class="" data-grupo="Grupo H" data-brasil="false">
+      <td class="date">26/06/2026</td>
+      <td class="time">21:00</td>
+      <td><span class="group-pill">Grupo H</span></td>
+      <td class="match">🇨🇻 Cabo Verde <span class='versus'>x</span> 🇸🇦 Arábia Saudita</td>
+      <td><span class="status scheduled">Agendado</span></td>
+    </tr>
+
+    <tr class="" data-grupo="Grupo G" data-brasil="false">
+      <td class="date">27/06/2026</td>
+      <td class="time">00:00</td>
+      <td><span class="group-pill">Grupo G</span></td>
+      <td class="match">🇳🇿 Nova Zelândia <span class='versus'>x</span> 🇧🇪 Bélgica</td>
+      <td><span class="status scheduled">Agendado</span></td>
+    </tr>
+
+    <tr class="" data-grupo="Grupo G" data-brasil="false">
+      <td class="date">27/06/2026</td>
+      <td class="time">00:00</td>
+      <td><span class="group-pill">Grupo G</span></td>
+      <td class="match">🇪🇬 Egito <span class='versus'>x</span> 🇮🇷 Irã</td>
+      <td><span class="status scheduled">Agendado</span></td>
+    </tr>
+
+    <tr class="" data-grupo="Grupo L" data-brasil="false">
+      <td class="date">27/06/2026</td>
+      <td class="time">18:00</td>
+      <td><span class="group-pill">Grupo L</span></td>
+      <td class="match">🇵🇦 Panamá <span class='versus'>x</span> 🏴󠁧󠁢󠁥󠁮󠁧󠁿 Inglaterra</td>
+      <td><span class="status scheduled">Agendado</span></td>
+    </tr>
+
+    <tr class="" data-grupo="Grupo L" data-brasil="false">
+      <td class="date">27/06/2026</td>
+      <td class="time">18:00</td>
+      <td><span class="group-pill">Grupo L</span></td>
+      <td class="match">🇭🇷 Croácia <span class='versus'>x</span> 🇬🇭 Gana</td>
+      <td><span class="status scheduled">Agendado</span></td>
+    </tr>
+
+    <tr class="" data-grupo="Grupo K" data-brasil="false">
+      <td class="date">27/06/2026</td>
+      <td class="time">20:30</td>
+      <td><span class="group-pill">Grupo K</span></td>
+      <td class="match">🇨🇴 Colômbia <span class='versus'>x</span> 🇵🇹 Portugal</td>
+      <td><span class="status scheduled">Agendado</span></td>
+    </tr>
+
+    <tr class="" data-grupo="Grupo K" data-brasil="false">
+      <td class="date">27/06/2026</td>
+      <td class="time">20:30</td>
+      <td><span class="group-pill">Grupo K</span></td>
+      <td class="match">🇨🇩 RD Congo <span class='versus'>x</span> 🇺🇿 Uzbequistão</td>
+      <td><span class="status scheduled">Agendado</span></td>
+    </tr>
+
+    <tr class="" data-grupo="Grupo J" data-brasil="false">
+      <td class="date">27/06/2026</td>
+      <td class="time">23:00</td>
+      <td><span class="group-pill">Grupo J</span></td>
+      <td class="match">🇯🇴 Jordânia <span class='versus'>x</span> 🇦🇷 Argentina</td>
+      <td><span class="status scheduled">Agendado</span></td>
+    </tr>
+
+    <tr class="" data-grupo="Grupo J" data-brasil="false">
+      <td class="date">27/06/2026</td>
+      <td class="time">23:00</td>
+      <td><span class="group-pill">Grupo J</span></td>
+      <td class="match">🇩🇿 Argélia <span class='versus'>x</span> 🇦🇹 Áustria</td>
+      <td><span class="status scheduled">Agendado</span></td>
+    </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="footer">
+    Filtro Somente Brasil corrigido em modo CSS, sem depender de JavaScript.
+  </div>
+</div>
+
+
+</body>
+</html>
