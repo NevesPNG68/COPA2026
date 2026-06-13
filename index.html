@@ -194,7 +194,9 @@ tr.brasil .match {
 }
 
 .match {
-  font-size: 16px;
+  font-size: 17px;
+  font-weight: 700;
+  letter-spacing: .01em;
 }
 
 .versus {
@@ -313,6 +315,21 @@ tr.brasil .match {
   }
 }
 
+
+.flag {
+  width: 24px;
+  height: 18px;
+  object-fit: cover;
+  border-radius: 3px;
+  margin-right: 7px;
+  vertical-align: -3px;
+  box-shadow: 0 0 6px rgba(255,255,255,.18);
+}
+
+.match .flag:not(:first-child) {
+  margin-left: 7px;
+}
+
 </style>
 </head>
 <body>
@@ -334,7 +351,7 @@ tr.brasil .match {
 
   <div class="toolbar">
     <label for="toggleBrasil" class="filter-btn all-btn">Todos os jogos</label>
-    <label for="toggleBrasil" class="filter-btn brazil-btn">Somente Brasil 🇧🇷</label>
+    <label for="toggleBrasil" class="filter-btn brazil-btn">Somente Brasil <img class="flag" src="https://flagcdn.com/24x18/br.png" alt="Brasil" loading="lazy"></label>
   </div>
 
   <div class="table-wrap">
@@ -354,7 +371,7 @@ tr.brasil .match {
       <td class="date">11/06/2026</td>
       <td class="time">16:00</td>
       <td><span class="group-pill">Grupo A</span></td>
-      <td class="match">🇲🇽 México <span class='versus'>x</span> 🇿🇦 África do Sul</td>
+      <td class="match"><img class="flag" src="https://flagcdn.com/24x18/mx.png" alt="México" loading="lazy"> México <span class='versus'>x</span> <img class="flag" src="https://flagcdn.com/24x18/za.png" alt="África do Sul" loading="lazy"> África do Sul</td>
       <td><span class="status done">Concluído</span></td>
     </tr>
 
@@ -362,7 +379,7 @@ tr.brasil .match {
       <td class="date">11/06/2026</td>
       <td class="time">23:00</td>
       <td><span class="group-pill">Grupo A</span></td>
-      <td class="match">🇰🇷 Coreia do Sul <span class='versus'>x</span> 🇨🇿 Tchéquia</td>
+      <td class="match"><img class="flag" src="https://flagcdn.com/24x18/kr.png" alt="Coreia do Sul" loading="lazy"> Coreia do Sul <span class='versus'>x</span> <img class="flag" src="https://flagcdn.com/24x18/cz.png" alt="Tchéquia" loading="lazy"> Tchéquia</td>
       <td><span class="status done">Concluído</span></td>
     </tr>
 
@@ -370,7 +387,7 @@ tr.brasil .match {
       <td class="date">12/06/2026</td>
       <td class="time">16:00</td>
       <td><span class="group-pill">Grupo B</span></td>
-      <td class="match">🇨🇦 Canadá <span class='versus'>x</span> 🇧🇦 Bósnia e Herzegovina</td>
+      <td class="match"><img class="flag" src="https://flagcdn.com/24x18/ca.png" alt="Canadá" loading="lazy"> Canadá <span class='versus'>x</span> <img class="flag" src="https://flagcdn.com/24x18/ba.png" alt="Bósnia e Herzegovina" loading="lazy"> Bósnia e Herzegovina</td>
       <td><span class="status done">Concluído</span></td>
     </tr>
 
@@ -378,7 +395,7 @@ tr.brasil .match {
       <td class="date">12/06/2026</td>
       <td class="time">22:00</td>
       <td><span class="group-pill">Grupo D</span></td>
-      <td class="match">🇺🇸 Estados Unidos <span class='versus'>x</span> 🇵🇾 Paraguai</td>
+      <td class="match"><img class="flag" src="https://flagcdn.com/24x18/us.png" alt="Estados Unidos" loading="lazy"> Estados Unidos <span class='versus'>x</span> <img class="flag" src="https://flagcdn.com/24x18/py.png" alt="Paraguai" loading="lazy"> Paraguai</td>
       <td><span class="status scheduled">Agendado</span></td>
     </tr>
 
@@ -386,7 +403,7 @@ tr.brasil .match {
       <td class="date">13/06/2026</td>
       <td class="time">16:00</td>
       <td><span class="group-pill">Grupo B</span></td>
-      <td class="match">🇶🇦 Catar <span class='versus'>x</span> 🇨🇭 Suíça</td>
+      <td class="match"><img class="flag" src="https://flagcdn.com/24x18/qa.png" alt="Catar" loading="lazy"> Catar <span class='versus'>x</span> <img class="flag" src="https://flagcdn.com/24x18/ch.png" alt="Suíça" loading="lazy"> Suíça</td>
       <td><span class="status scheduled">Agendado</span></td>
     </tr>
 
@@ -394,7 +411,7 @@ tr.brasil .match {
       <td class="date">13/06/2026</td>
       <td class="time">19:00</td>
       <td><span class="group-pill">Grupo C</span></td>
-      <td class="match">🇧🇷 Brasil <span class='versus'>x</span> 🇲🇦 Marrocos</td>
+      <td class="match"><img class="flag" src="https://flagcdn.com/24x18/br.png" alt="Brasil" loading="lazy"> Brasil <span class='versus'>x</span> <img class="flag" src="https://flagcdn.com/24x18/ma.png" alt="Marrocos" loading="lazy"> Marrocos</td>
       <td><span class="status scheduled">Agendado</span></td>
     </tr>
 
@@ -402,7 +419,7 @@ tr.brasil .match {
       <td class="date">13/06/2026</td>
       <td class="time">22:00</td>
       <td><span class="group-pill">Grupo C</span></td>
-      <td class="match">🇭🇹 Haiti <span class='versus'>x</span> 🏴󠁧󠁢󠁳󠁣󠁴󠁿 Escócia</td>
+      <td class="match"><img class="flag" src="https://flagcdn.com/24x18/ht.png" alt="Haiti" loading="lazy"> Haiti <span class='versus'>x</span> <img class="flag" src="https://flagcdn.com/24x18/gb-sct.png" alt="Escócia/Inglaterra" loading="lazy">󠁧󠁢󠁳󠁣󠁴󠁿 Escócia</td>
       <td><span class="status scheduled">Agendado</span></td>
     </tr>
 
@@ -410,7 +427,7 @@ tr.brasil .match {
       <td class="date">14/06/2026</td>
       <td class="time">01:00</td>
       <td><span class="group-pill">Grupo D</span></td>
-      <td class="match">🇦🇺 Austrália <span class='versus'>x</span> 🇹🇷 Turquia</td>
+      <td class="match"><img class="flag" src="https://flagcdn.com/24x18/au.png" alt="Austrália" loading="lazy"> Austrália <span class='versus'>x</span> <img class="flag" src="https://flagcdn.com/24x18/tr.png" alt="Turquia" loading="lazy"> Turquia</td>
       <td><span class="status scheduled">Agendado</span></td>
     </tr>
 
@@ -418,7 +435,7 @@ tr.brasil .match {
       <td class="date">14/06/2026</td>
       <td class="time">14:00</td>
       <td><span class="group-pill">Grupo E</span></td>
-      <td class="match">🇩🇪 Alemanha <span class='versus'>x</span> 🇨🇼 Curaçao</td>
+      <td class="match"><img class="flag" src="https://flagcdn.com/24x18/de.png" alt="Alemanha" loading="lazy"> Alemanha <span class='versus'>x</span> <img class="flag" src="https://flagcdn.com/24x18/cw.png" alt="Curaçao" loading="lazy"> Curaçao</td>
       <td><span class="status scheduled">Agendado</span></td>
     </tr>
 
@@ -426,7 +443,7 @@ tr.brasil .match {
       <td class="date">14/06/2026</td>
       <td class="time">17:00</td>
       <td><span class="group-pill">Grupo F</span></td>
-      <td class="match">🇳🇱 Holanda <span class='versus'>x</span> 🇯🇵 Japão</td>
+      <td class="match"><img class="flag" src="https://flagcdn.com/24x18/nl.png" alt="Holanda" loading="lazy"> Holanda <span class='versus'>x</span> <img class="flag" src="https://flagcdn.com/24x18/jp.png" alt="Japão" loading="lazy"> Japão</td>
       <td><span class="status scheduled">Agendado</span></td>
     </tr>
 
@@ -434,7 +451,7 @@ tr.brasil .match {
       <td class="date">14/06/2026</td>
       <td class="time">20:00</td>
       <td><span class="group-pill">Grupo E</span></td>
-      <td class="match">🇨🇮 Costa do Marfim <span class='versus'>x</span> 🇪🇨 Equador</td>
+      <td class="match"><img class="flag" src="https://flagcdn.com/24x18/ci.png" alt="Costa do Marfim" loading="lazy"> Costa do Marfim <span class='versus'>x</span> <img class="flag" src="https://flagcdn.com/24x18/ec.png" alt="Equador" loading="lazy"> Equador</td>
       <td><span class="status scheduled">Agendado</span></td>
     </tr>
 
@@ -442,7 +459,7 @@ tr.brasil .match {
       <td class="date">14/06/2026</td>
       <td class="time">23:00</td>
       <td><span class="group-pill">Grupo F</span></td>
-      <td class="match">🇸🇪 Suécia <span class='versus'>x</span> 🇹🇳 Tunísia</td>
+      <td class="match"><img class="flag" src="https://flagcdn.com/24x18/se.png" alt="Suécia" loading="lazy"> Suécia <span class='versus'>x</span> <img class="flag" src="https://flagcdn.com/24x18/tn.png" alt="Tunísia" loading="lazy"> Tunísia</td>
       <td><span class="status scheduled">Agendado</span></td>
     </tr>
 
@@ -450,7 +467,7 @@ tr.brasil .match {
       <td class="date">15/06/2026</td>
       <td class="time">13:00</td>
       <td><span class="group-pill">Grupo H</span></td>
-      <td class="match">🇪🇸 Espanha <span class='versus'>x</span> 🇨🇻 Cabo Verde</td>
+      <td class="match"><img class="flag" src="https://flagcdn.com/24x18/es.png" alt="Espanha" loading="lazy"> Espanha <span class='versus'>x</span> <img class="flag" src="https://flagcdn.com/24x18/cv.png" alt="Cabo Verde" loading="lazy"> Cabo Verde</td>
       <td><span class="status scheduled">Agendado</span></td>
     </tr>
 
@@ -458,7 +475,7 @@ tr.brasil .match {
       <td class="date">15/06/2026</td>
       <td class="time">16:00</td>
       <td><span class="group-pill">Grupo G</span></td>
-      <td class="match">🇧🇪 Bélgica <span class='versus'>x</span> 🇪🇬 Egito</td>
+      <td class="match"><img class="flag" src="https://flagcdn.com/24x18/be.png" alt="Bélgica" loading="lazy"> Bélgica <span class='versus'>x</span> <img class="flag" src="https://flagcdn.com/24x18/eg.png" alt="Egito" loading="lazy"> Egito</td>
       <td><span class="status scheduled">Agendado</span></td>
     </tr>
 
@@ -466,7 +483,7 @@ tr.brasil .match {
       <td class="date">15/06/2026</td>
       <td class="time">19:00</td>
       <td><span class="group-pill">Grupo H</span></td>
-      <td class="match">🇸🇦 Arábia Saudita <span class='versus'>x</span> 🇺🇾 Uruguai</td>
+      <td class="match"><img class="flag" src="https://flagcdn.com/24x18/sa.png" alt="Arábia Saudita" loading="lazy"> Arábia Saudita <span class='versus'>x</span> <img class="flag" src="https://flagcdn.com/24x18/uy.png" alt="Uruguai" loading="lazy"> Uruguai</td>
       <td><span class="status scheduled">Agendado</span></td>
     </tr>
 
@@ -474,7 +491,7 @@ tr.brasil .match {
       <td class="date">15/06/2026</td>
       <td class="time">22:00</td>
       <td><span class="group-pill">Grupo G</span></td>
-      <td class="match">🇮🇷 Irã <span class='versus'>x</span> 🇳🇿 Nova Zelândia</td>
+      <td class="match"><img class="flag" src="https://flagcdn.com/24x18/ir.png" alt="Irã" loading="lazy"> Irã <span class='versus'>x</span> <img class="flag" src="https://flagcdn.com/24x18/nz.png" alt="Nova Zelândia" loading="lazy"> Nova Zelândia</td>
       <td><span class="status scheduled">Agendado</span></td>
     </tr>
 
@@ -482,7 +499,7 @@ tr.brasil .match {
       <td class="date">16/06/2026</td>
       <td class="time">16:00</td>
       <td><span class="group-pill">Grupo I</span></td>
-      <td class="match">🇫🇷 França <span class='versus'>x</span> 🇸🇳 Senegal</td>
+      <td class="match"><img class="flag" src="https://flagcdn.com/24x18/fr.png" alt="França" loading="lazy"> França <span class='versus'>x</span> <img class="flag" src="https://flagcdn.com/24x18/sn.png" alt="Senegal" loading="lazy"> Senegal</td>
       <td><span class="status scheduled">Agendado</span></td>
     </tr>
 
@@ -490,7 +507,7 @@ tr.brasil .match {
       <td class="date">16/06/2026</td>
       <td class="time">19:00</td>
       <td><span class="group-pill">Grupo I</span></td>
-      <td class="match">🇮🇶 Iraque <span class='versus'>x</span> 🇳🇴 Noruega</td>
+      <td class="match"><img class="flag" src="https://flagcdn.com/24x18/iq.png" alt="Iraque" loading="lazy"> Iraque <span class='versus'>x</span> <img class="flag" src="https://flagcdn.com/24x18/no.png" alt="Noruega" loading="lazy"> Noruega</td>
       <td><span class="status scheduled">Agendado</span></td>
     </tr>
 
@@ -498,7 +515,7 @@ tr.brasil .match {
       <td class="date">16/06/2026</td>
       <td class="time">22:00</td>
       <td><span class="group-pill">Grupo J</span></td>
-      <td class="match">🇦🇷 Argentina <span class='versus'>x</span> 🇩🇿 Argélia</td>
+      <td class="match"><img class="flag" src="https://flagcdn.com/24x18/ar.png" alt="Argentina" loading="lazy"> Argentina <span class='versus'>x</span> <img class="flag" src="https://flagcdn.com/24x18/dz.png" alt="Argélia" loading="lazy"> Argélia</td>
       <td><span class="status scheduled">Agendado</span></td>
     </tr>
 
@@ -506,7 +523,7 @@ tr.brasil .match {
       <td class="date">17/06/2026</td>
       <td class="time">01:00</td>
       <td><span class="group-pill">Grupo J</span></td>
-      <td class="match">🇦🇹 Áustria <span class='versus'>x</span> 🇯🇴 Jordânia</td>
+      <td class="match"><img class="flag" src="https://flagcdn.com/24x18/at.png" alt="Áustria" loading="lazy"> Áustria <span class='versus'>x</span> <img class="flag" src="https://flagcdn.com/24x18/jo.png" alt="Jordânia" loading="lazy"> Jordânia</td>
       <td><span class="status scheduled">Agendado</span></td>
     </tr>
 
@@ -514,7 +531,7 @@ tr.brasil .match {
       <td class="date">17/06/2026</td>
       <td class="time">14:00</td>
       <td><span class="group-pill">Grupo K</span></td>
-      <td class="match">🇵🇹 Portugal <span class='versus'>x</span> 🇨🇩 RD Congo</td>
+      <td class="match"><img class="flag" src="https://flagcdn.com/24x18/pt.png" alt="Portugal" loading="lazy"> Portugal <span class='versus'>x</span> <img class="flag" src="https://flagcdn.com/24x18/cd.png" alt="RD Congo" loading="lazy"> RD Congo</td>
       <td><span class="status scheduled">Agendado</span></td>
     </tr>
 
@@ -522,7 +539,7 @@ tr.brasil .match {
       <td class="date">17/06/2026</td>
       <td class="time">17:00</td>
       <td><span class="group-pill">Grupo L</span></td>
-      <td class="match">🏴󠁧󠁢󠁥󠁮󠁧󠁿 Inglaterra <span class='versus'>x</span> 🇭🇷 Croácia</td>
+      <td class="match"><img class="flag" src="https://flagcdn.com/24x18/gb-sct.png" alt="Escócia/Inglaterra" loading="lazy">󠁧󠁢󠁥󠁮󠁧󠁿 Inglaterra <span class='versus'>x</span> <img class="flag" src="https://flagcdn.com/24x18/hr.png" alt="Croácia" loading="lazy"> Croácia</td>
       <td><span class="status scheduled">Agendado</span></td>
     </tr>
 
@@ -530,7 +547,7 @@ tr.brasil .match {
       <td class="date">17/06/2026</td>
       <td class="time">20:00</td>
       <td><span class="group-pill">Grupo L</span></td>
-      <td class="match">🇬🇭 Gana <span class='versus'>x</span> 🇵🇦 Panamá</td>
+      <td class="match"><img class="flag" src="https://flagcdn.com/24x18/gh.png" alt="Gana" loading="lazy"> Gana <span class='versus'>x</span> <img class="flag" src="https://flagcdn.com/24x18/pa.png" alt="Panamá" loading="lazy"> Panamá</td>
       <td><span class="status scheduled">Agendado</span></td>
     </tr>
 
@@ -538,7 +555,7 @@ tr.brasil .match {
       <td class="date">17/06/2026</td>
       <td class="time">23:00</td>
       <td><span class="group-pill">Grupo K</span></td>
-      <td class="match">🇺🇿 Uzbequistão <span class='versus'>x</span> 🇨🇴 Colômbia</td>
+      <td class="match"><img class="flag" src="https://flagcdn.com/24x18/uz.png" alt="Uzbequistão" loading="lazy"> Uzbequistão <span class='versus'>x</span> <img class="flag" src="https://flagcdn.com/24x18/co.png" alt="Colômbia" loading="lazy"> Colômbia</td>
       <td><span class="status scheduled">Agendado</span></td>
     </tr>
 
@@ -546,7 +563,7 @@ tr.brasil .match {
       <td class="date">18/06/2026</td>
       <td class="time">13:00</td>
       <td><span class="group-pill">Grupo A</span></td>
-      <td class="match">🇨🇿 Tchéquia <span class='versus'>x</span> 🇿🇦 África do Sul</td>
+      <td class="match"><img class="flag" src="https://flagcdn.com/24x18/cz.png" alt="Tchéquia" loading="lazy"> Tchéquia <span class='versus'>x</span> <img class="flag" src="https://flagcdn.com/24x18/za.png" alt="África do Sul" loading="lazy"> África do Sul</td>
       <td><span class="status scheduled">Agendado</span></td>
     </tr>
 
@@ -554,7 +571,7 @@ tr.brasil .match {
       <td class="date">18/06/2026</td>
       <td class="time">16:00</td>
       <td><span class="group-pill">Grupo B</span></td>
-      <td class="match">🇨🇭 Suíça <span class='versus'>x</span> 🇧🇦 Bósnia e Herzegovina</td>
+      <td class="match"><img class="flag" src="https://flagcdn.com/24x18/ch.png" alt="Suíça" loading="lazy"> Suíça <span class='versus'>x</span> <img class="flag" src="https://flagcdn.com/24x18/ba.png" alt="Bósnia e Herzegovina" loading="lazy"> Bósnia e Herzegovina</td>
       <td><span class="status scheduled">Agendado</span></td>
     </tr>
 
@@ -562,7 +579,7 @@ tr.brasil .match {
       <td class="date">18/06/2026</td>
       <td class="time">19:00</td>
       <td><span class="group-pill">Grupo B</span></td>
-      <td class="match">🇨🇦 Canadá <span class='versus'>x</span> 🇶🇦 Catar</td>
+      <td class="match"><img class="flag" src="https://flagcdn.com/24x18/ca.png" alt="Canadá" loading="lazy"> Canadá <span class='versus'>x</span> <img class="flag" src="https://flagcdn.com/24x18/qa.png" alt="Catar" loading="lazy"> Catar</td>
       <td><span class="status scheduled">Agendado</span></td>
     </tr>
 
@@ -570,7 +587,7 @@ tr.brasil .match {
       <td class="date">18/06/2026</td>
       <td class="time">22:00</td>
       <td><span class="group-pill">Grupo A</span></td>
-      <td class="match">🇲🇽 México <span class='versus'>x</span> 🇰🇷 Coreia do Sul</td>
+      <td class="match"><img class="flag" src="https://flagcdn.com/24x18/mx.png" alt="México" loading="lazy"> México <span class='versus'>x</span> <img class="flag" src="https://flagcdn.com/24x18/kr.png" alt="Coreia do Sul" loading="lazy"> Coreia do Sul</td>
       <td><span class="status scheduled">Agendado</span></td>
     </tr>
 
@@ -578,7 +595,7 @@ tr.brasil .match {
       <td class="date">19/06/2026</td>
       <td class="time">16:00</td>
       <td><span class="group-pill">Grupo D</span></td>
-      <td class="match">🇺🇸 Estados Unidos <span class='versus'>x</span> 🇦🇺 Austrália</td>
+      <td class="match"><img class="flag" src="https://flagcdn.com/24x18/us.png" alt="Estados Unidos" loading="lazy"> Estados Unidos <span class='versus'>x</span> <img class="flag" src="https://flagcdn.com/24x18/au.png" alt="Austrália" loading="lazy"> Austrália</td>
       <td><span class="status scheduled">Agendado</span></td>
     </tr>
 
@@ -586,7 +603,7 @@ tr.brasil .match {
       <td class="date">19/06/2026</td>
       <td class="time">19:00</td>
       <td><span class="group-pill">Grupo C</span></td>
-      <td class="match">🏴󠁧󠁢󠁳󠁣󠁴󠁿 Escócia <span class='versus'>x</span> 🇲🇦 Marrocos</td>
+      <td class="match"><img class="flag" src="https://flagcdn.com/24x18/gb-sct.png" alt="Escócia/Inglaterra" loading="lazy">󠁧󠁢󠁳󠁣󠁴󠁿 Escócia <span class='versus'>x</span> <img class="flag" src="https://flagcdn.com/24x18/ma.png" alt="Marrocos" loading="lazy"> Marrocos</td>
       <td><span class="status scheduled">Agendado</span></td>
     </tr>
 
@@ -594,7 +611,7 @@ tr.brasil .match {
       <td class="date">19/06/2026</td>
       <td class="time">21:30</td>
       <td><span class="group-pill">Grupo C</span></td>
-      <td class="match">🇧🇷 Brasil <span class='versus'>x</span> 🇭🇹 Haiti</td>
+      <td class="match"><img class="flag" src="https://flagcdn.com/24x18/br.png" alt="Brasil" loading="lazy"> Brasil <span class='versus'>x</span> <img class="flag" src="https://flagcdn.com/24x18/ht.png" alt="Haiti" loading="lazy"> Haiti</td>
       <td><span class="status scheduled">Agendado</span></td>
     </tr>
 
@@ -602,7 +619,7 @@ tr.brasil .match {
       <td class="date">20/06/2026</td>
       <td class="time">00:00</td>
       <td><span class="group-pill">Grupo D</span></td>
-      <td class="match">🇹🇷 Turquia <span class='versus'>x</span> 🇵🇾 Paraguai</td>
+      <td class="match"><img class="flag" src="https://flagcdn.com/24x18/tr.png" alt="Turquia" loading="lazy"> Turquia <span class='versus'>x</span> <img class="flag" src="https://flagcdn.com/24x18/py.png" alt="Paraguai" loading="lazy"> Paraguai</td>
       <td><span class="status scheduled">Agendado</span></td>
     </tr>
 
@@ -610,7 +627,7 @@ tr.brasil .match {
       <td class="date">20/06/2026</td>
       <td class="time">14:00</td>
       <td><span class="group-pill">Grupo F</span></td>
-      <td class="match">🇳🇱 Holanda <span class='versus'>x</span> 🇸🇪 Suécia</td>
+      <td class="match"><img class="flag" src="https://flagcdn.com/24x18/nl.png" alt="Holanda" loading="lazy"> Holanda <span class='versus'>x</span> <img class="flag" src="https://flagcdn.com/24x18/se.png" alt="Suécia" loading="lazy"> Suécia</td>
       <td><span class="status scheduled">Agendado</span></td>
     </tr>
 
@@ -618,7 +635,7 @@ tr.brasil .match {
       <td class="date">20/06/2026</td>
       <td class="time">17:00</td>
       <td><span class="group-pill">Grupo E</span></td>
-      <td class="match">🇩🇪 Alemanha <span class='versus'>x</span> 🇨🇮 Costa do Marfim</td>
+      <td class="match"><img class="flag" src="https://flagcdn.com/24x18/de.png" alt="Alemanha" loading="lazy"> Alemanha <span class='versus'>x</span> <img class="flag" src="https://flagcdn.com/24x18/ci.png" alt="Costa do Marfim" loading="lazy"> Costa do Marfim</td>
       <td><span class="status scheduled">Agendado</span></td>
     </tr>
 
@@ -626,7 +643,7 @@ tr.brasil .match {
       <td class="date">20/06/2026</td>
       <td class="time">21:00</td>
       <td><span class="group-pill">Grupo E</span></td>
-      <td class="match">🇪🇨 Equador <span class='versus'>x</span> 🇨🇼 Curaçao</td>
+      <td class="match"><img class="flag" src="https://flagcdn.com/24x18/ec.png" alt="Equador" loading="lazy"> Equador <span class='versus'>x</span> <img class="flag" src="https://flagcdn.com/24x18/cw.png" alt="Curaçao" loading="lazy"> Curaçao</td>
       <td><span class="status scheduled">Agendado</span></td>
     </tr>
 
@@ -634,7 +651,7 @@ tr.brasil .match {
       <td class="date">21/06/2026</td>
       <td class="time">01:00</td>
       <td><span class="group-pill">Grupo F</span></td>
-      <td class="match">🇹🇳 Tunísia <span class='versus'>x</span> 🇯🇵 Japão</td>
+      <td class="match"><img class="flag" src="https://flagcdn.com/24x18/tn.png" alt="Tunísia" loading="lazy"> Tunísia <span class='versus'>x</span> <img class="flag" src="https://flagcdn.com/24x18/jp.png" alt="Japão" loading="lazy"> Japão</td>
       <td><span class="status scheduled">Agendado</span></td>
     </tr>
 
@@ -642,7 +659,7 @@ tr.brasil .match {
       <td class="date">21/06/2026</td>
       <td class="time">13:00</td>
       <td><span class="group-pill">Grupo H</span></td>
-      <td class="match">🇪🇸 Espanha <span class='versus'>x</span> 🇸🇦 Arábia Saudita</td>
+      <td class="match"><img class="flag" src="https://flagcdn.com/24x18/es.png" alt="Espanha" loading="lazy"> Espanha <span class='versus'>x</span> <img class="flag" src="https://flagcdn.com/24x18/sa.png" alt="Arábia Saudita" loading="lazy"> Arábia Saudita</td>
       <td><span class="status scheduled">Agendado</span></td>
     </tr>
 
@@ -650,7 +667,7 @@ tr.brasil .match {
       <td class="date">21/06/2026</td>
       <td class="time">16:00</td>
       <td><span class="group-pill">Grupo G</span></td>
-      <td class="match">🇧🇪 Bélgica <span class='versus'>x</span> 🇮🇷 Irã</td>
+      <td class="match"><img class="flag" src="https://flagcdn.com/24x18/be.png" alt="Bélgica" loading="lazy"> Bélgica <span class='versus'>x</span> <img class="flag" src="https://flagcdn.com/24x18/ir.png" alt="Irã" loading="lazy"> Irã</td>
       <td><span class="status scheduled">Agendado</span></td>
     </tr>
 
@@ -658,7 +675,7 @@ tr.brasil .match {
       <td class="date">21/06/2026</td>
       <td class="time">19:00</td>
       <td><span class="group-pill">Grupo H</span></td>
-      <td class="match">🇺🇾 Uruguai <span class='versus'>x</span> 🇨🇻 Cabo Verde</td>
+      <td class="match"><img class="flag" src="https://flagcdn.com/24x18/uy.png" alt="Uruguai" loading="lazy"> Uruguai <span class='versus'>x</span> <img class="flag" src="https://flagcdn.com/24x18/cv.png" alt="Cabo Verde" loading="lazy"> Cabo Verde</td>
       <td><span class="status scheduled">Agendado</span></td>
     </tr>
 
@@ -666,7 +683,7 @@ tr.brasil .match {
       <td class="date">21/06/2026</td>
       <td class="time">22:00</td>
       <td><span class="group-pill">Grupo G</span></td>
-      <td class="match">🇳🇿 Nova Zelândia <span class='versus'>x</span> 🇪🇬 Egito</td>
+      <td class="match"><img class="flag" src="https://flagcdn.com/24x18/nz.png" alt="Nova Zelândia" loading="lazy"> Nova Zelândia <span class='versus'>x</span> <img class="flag" src="https://flagcdn.com/24x18/eg.png" alt="Egito" loading="lazy"> Egito</td>
       <td><span class="status scheduled">Agendado</span></td>
     </tr>
 
@@ -674,7 +691,7 @@ tr.brasil .match {
       <td class="date">22/06/2026</td>
       <td class="time">14:00</td>
       <td><span class="group-pill">Grupo J</span></td>
-      <td class="match">🇦🇷 Argentina <span class='versus'>x</span> 🇦🇹 Áustria</td>
+      <td class="match"><img class="flag" src="https://flagcdn.com/24x18/ar.png" alt="Argentina" loading="lazy"> Argentina <span class='versus'>x</span> <img class="flag" src="https://flagcdn.com/24x18/at.png" alt="Áustria" loading="lazy"> Áustria</td>
       <td><span class="status scheduled">Agendado</span></td>
     </tr>
 
@@ -682,7 +699,7 @@ tr.brasil .match {
       <td class="date">22/06/2026</td>
       <td class="time">18:00</td>
       <td><span class="group-pill">Grupo I</span></td>
-      <td class="match">🇫🇷 França <span class='versus'>x</span> 🇮🇶 Iraque</td>
+      <td class="match"><img class="flag" src="https://flagcdn.com/24x18/fr.png" alt="França" loading="lazy"> França <span class='versus'>x</span> <img class="flag" src="https://flagcdn.com/24x18/iq.png" alt="Iraque" loading="lazy"> Iraque</td>
       <td><span class="status scheduled">Agendado</span></td>
     </tr>
 
@@ -690,7 +707,7 @@ tr.brasil .match {
       <td class="date">22/06/2026</td>
       <td class="time">21:00</td>
       <td><span class="group-pill">Grupo I</span></td>
-      <td class="match">🇳🇴 Noruega <span class='versus'>x</span> 🇸🇳 Senegal</td>
+      <td class="match"><img class="flag" src="https://flagcdn.com/24x18/no.png" alt="Noruega" loading="lazy"> Noruega <span class='versus'>x</span> <img class="flag" src="https://flagcdn.com/24x18/sn.png" alt="Senegal" loading="lazy"> Senegal</td>
       <td><span class="status scheduled">Agendado</span></td>
     </tr>
 
@@ -698,7 +715,7 @@ tr.brasil .match {
       <td class="date">23/06/2026</td>
       <td class="time">00:00</td>
       <td><span class="group-pill">Grupo J</span></td>
-      <td class="match">🇯🇴 Jordânia <span class='versus'>x</span> 🇩🇿 Argélia</td>
+      <td class="match"><img class="flag" src="https://flagcdn.com/24x18/jo.png" alt="Jordânia" loading="lazy"> Jordânia <span class='versus'>x</span> <img class="flag" src="https://flagcdn.com/24x18/dz.png" alt="Argélia" loading="lazy"> Argélia</td>
       <td><span class="status scheduled">Agendado</span></td>
     </tr>
 
@@ -706,7 +723,7 @@ tr.brasil .match {
       <td class="date">23/06/2026</td>
       <td class="time">14:00</td>
       <td><span class="group-pill">Grupo K</span></td>
-      <td class="match">🇵🇹 Portugal <span class='versus'>x</span> 🇺🇿 Uzbequistão</td>
+      <td class="match"><img class="flag" src="https://flagcdn.com/24x18/pt.png" alt="Portugal" loading="lazy"> Portugal <span class='versus'>x</span> <img class="flag" src="https://flagcdn.com/24x18/uz.png" alt="Uzbequistão" loading="lazy"> Uzbequistão</td>
       <td><span class="status scheduled">Agendado</span></td>
     </tr>
 
@@ -714,7 +731,7 @@ tr.brasil .match {
       <td class="date">23/06/2026</td>
       <td class="time">17:00</td>
       <td><span class="group-pill">Grupo L</span></td>
-      <td class="match">🏴󠁧󠁢󠁥󠁮󠁧󠁿 Inglaterra <span class='versus'>x</span> 🇬🇭 Gana</td>
+      <td class="match"><img class="flag" src="https://flagcdn.com/24x18/gb-sct.png" alt="Escócia/Inglaterra" loading="lazy">󠁧󠁢󠁥󠁮󠁧󠁿 Inglaterra <span class='versus'>x</span> <img class="flag" src="https://flagcdn.com/24x18/gh.png" alt="Gana" loading="lazy"> Gana</td>
       <td><span class="status scheduled">Agendado</span></td>
     </tr>
 
@@ -722,7 +739,7 @@ tr.brasil .match {
       <td class="date">23/06/2026</td>
       <td class="time">20:00</td>
       <td><span class="group-pill">Grupo L</span></td>
-      <td class="match">🇵🇦 Panamá <span class='versus'>x</span> 🇭🇷 Croácia</td>
+      <td class="match"><img class="flag" src="https://flagcdn.com/24x18/pa.png" alt="Panamá" loading="lazy"> Panamá <span class='versus'>x</span> <img class="flag" src="https://flagcdn.com/24x18/hr.png" alt="Croácia" loading="lazy"> Croácia</td>
       <td><span class="status scheduled">Agendado</span></td>
     </tr>
 
@@ -730,7 +747,7 @@ tr.brasil .match {
       <td class="date">23/06/2026</td>
       <td class="time">23:00</td>
       <td><span class="group-pill">Grupo K</span></td>
-      <td class="match">🇨🇴 Colômbia <span class='versus'>x</span> 🇨🇩 RD Congo</td>
+      <td class="match"><img class="flag" src="https://flagcdn.com/24x18/co.png" alt="Colômbia" loading="lazy"> Colômbia <span class='versus'>x</span> <img class="flag" src="https://flagcdn.com/24x18/cd.png" alt="RD Congo" loading="lazy"> RD Congo</td>
       <td><span class="status scheduled">Agendado</span></td>
     </tr>
 
@@ -738,7 +755,7 @@ tr.brasil .match {
       <td class="date">24/06/2026</td>
       <td class="time">16:00</td>
       <td><span class="group-pill">Grupo B</span></td>
-      <td class="match">🇨🇭 Suíça <span class='versus'>x</span> 🇨🇦 Canadá</td>
+      <td class="match"><img class="flag" src="https://flagcdn.com/24x18/ch.png" alt="Suíça" loading="lazy"> Suíça <span class='versus'>x</span> <img class="flag" src="https://flagcdn.com/24x18/ca.png" alt="Canadá" loading="lazy"> Canadá</td>
       <td><span class="status scheduled">Agendado</span></td>
     </tr>
 
@@ -746,7 +763,7 @@ tr.brasil .match {
       <td class="date">24/06/2026</td>
       <td class="time">16:00</td>
       <td><span class="group-pill">Grupo B</span></td>
-      <td class="match">🇧🇦 Bósnia e Herzegovina <span class='versus'>x</span> 🇶🇦 Catar</td>
+      <td class="match"><img class="flag" src="https://flagcdn.com/24x18/ba.png" alt="Bósnia e Herzegovina" loading="lazy"> Bósnia e Herzegovina <span class='versus'>x</span> <img class="flag" src="https://flagcdn.com/24x18/qa.png" alt="Catar" loading="lazy"> Catar</td>
       <td><span class="status scheduled">Agendado</span></td>
     </tr>
 
@@ -754,7 +771,7 @@ tr.brasil .match {
       <td class="date">24/06/2026</td>
       <td class="time">19:00</td>
       <td><span class="group-pill">Grupo C</span></td>
-      <td class="match">🏴󠁧󠁢󠁳󠁣󠁴󠁿 Escócia <span class='versus'>x</span> 🇧🇷 Brasil</td>
+      <td class="match"><img class="flag" src="https://flagcdn.com/24x18/gb-sct.png" alt="Escócia/Inglaterra" loading="lazy">󠁧󠁢󠁳󠁣󠁴󠁿 Escócia <span class='versus'>x</span> <img class="flag" src="https://flagcdn.com/24x18/br.png" alt="Brasil" loading="lazy"> Brasil</td>
       <td><span class="status scheduled">Agendado</span></td>
     </tr>
 
@@ -762,7 +779,7 @@ tr.brasil .match {
       <td class="date">24/06/2026</td>
       <td class="time">19:00</td>
       <td><span class="group-pill">Grupo C</span></td>
-      <td class="match">🇲🇦 Marrocos <span class='versus'>x</span> 🇭🇹 Haiti</td>
+      <td class="match"><img class="flag" src="https://flagcdn.com/24x18/ma.png" alt="Marrocos" loading="lazy"> Marrocos <span class='versus'>x</span> <img class="flag" src="https://flagcdn.com/24x18/ht.png" alt="Haiti" loading="lazy"> Haiti</td>
       <td><span class="status scheduled">Agendado</span></td>
     </tr>
 
@@ -770,7 +787,7 @@ tr.brasil .match {
       <td class="date">24/06/2026</td>
       <td class="time">22:00</td>
       <td><span class="group-pill">Grupo A</span></td>
-      <td class="match">🇨🇿 Tchéquia <span class='versus'>x</span> 🇲🇽 México</td>
+      <td class="match"><img class="flag" src="https://flagcdn.com/24x18/cz.png" alt="Tchéquia" loading="lazy"> Tchéquia <span class='versus'>x</span> <img class="flag" src="https://flagcdn.com/24x18/mx.png" alt="México" loading="lazy"> México</td>
       <td><span class="status scheduled">Agendado</span></td>
     </tr>
 
@@ -778,7 +795,7 @@ tr.brasil .match {
       <td class="date">24/06/2026</td>
       <td class="time">22:00</td>
       <td><span class="group-pill">Grupo A</span></td>
-      <td class="match">🇿🇦 África do Sul <span class='versus'>x</span> 🇰🇷 Coreia do Sul</td>
+      <td class="match"><img class="flag" src="https://flagcdn.com/24x18/za.png" alt="África do Sul" loading="lazy"> África do Sul <span class='versus'>x</span> <img class="flag" src="https://flagcdn.com/24x18/kr.png" alt="Coreia do Sul" loading="lazy"> Coreia do Sul</td>
       <td><span class="status scheduled">Agendado</span></td>
     </tr>
 
@@ -786,7 +803,7 @@ tr.brasil .match {
       <td class="date">25/06/2026</td>
       <td class="time">17:00</td>
       <td><span class="group-pill">Grupo E</span></td>
-      <td class="match">🇪🇨 Equador <span class='versus'>x</span> 🇩🇪 Alemanha</td>
+      <td class="match"><img class="flag" src="https://flagcdn.com/24x18/ec.png" alt="Equador" loading="lazy"> Equador <span class='versus'>x</span> <img class="flag" src="https://flagcdn.com/24x18/de.png" alt="Alemanha" loading="lazy"> Alemanha</td>
       <td><span class="status scheduled">Agendado</span></td>
     </tr>
 
@@ -794,7 +811,7 @@ tr.brasil .match {
       <td class="date">25/06/2026</td>
       <td class="time">17:00</td>
       <td><span class="group-pill">Grupo E</span></td>
-      <td class="match">🇨🇼 Curaçao <span class='versus'>x</span> 🇨🇮 Costa do Marfim</td>
+      <td class="match"><img class="flag" src="https://flagcdn.com/24x18/cw.png" alt="Curaçao" loading="lazy"> Curaçao <span class='versus'>x</span> <img class="flag" src="https://flagcdn.com/24x18/ci.png" alt="Costa do Marfim" loading="lazy"> Costa do Marfim</td>
       <td><span class="status scheduled">Agendado</span></td>
     </tr>
 
@@ -802,7 +819,7 @@ tr.brasil .match {
       <td class="date">25/06/2026</td>
       <td class="time">20:00</td>
       <td><span class="group-pill">Grupo F</span></td>
-      <td class="match">🇹🇳 Tunísia <span class='versus'>x</span> 🇳🇱 Holanda</td>
+      <td class="match"><img class="flag" src="https://flagcdn.com/24x18/tn.png" alt="Tunísia" loading="lazy"> Tunísia <span class='versus'>x</span> <img class="flag" src="https://flagcdn.com/24x18/nl.png" alt="Holanda" loading="lazy"> Holanda</td>
       <td><span class="status scheduled">Agendado</span></td>
     </tr>
 
@@ -810,7 +827,7 @@ tr.brasil .match {
       <td class="date">25/06/2026</td>
       <td class="time">20:00</td>
       <td><span class="group-pill">Grupo F</span></td>
-      <td class="match">🇯🇵 Japão <span class='versus'>x</span> 🇸🇪 Suécia</td>
+      <td class="match"><img class="flag" src="https://flagcdn.com/24x18/jp.png" alt="Japão" loading="lazy"> Japão <span class='versus'>x</span> <img class="flag" src="https://flagcdn.com/24x18/se.png" alt="Suécia" loading="lazy"> Suécia</td>
       <td><span class="status scheduled">Agendado</span></td>
     </tr>
 
@@ -818,7 +835,7 @@ tr.brasil .match {
       <td class="date">25/06/2026</td>
       <td class="time">23:00</td>
       <td><span class="group-pill">Grupo D</span></td>
-      <td class="match">🇹🇷 Turquia <span class='versus'>x</span> 🇺🇸 Estados Unidos</td>
+      <td class="match"><img class="flag" src="https://flagcdn.com/24x18/tr.png" alt="Turquia" loading="lazy"> Turquia <span class='versus'>x</span> <img class="flag" src="https://flagcdn.com/24x18/us.png" alt="Estados Unidos" loading="lazy"> Estados Unidos</td>
       <td><span class="status scheduled">Agendado</span></td>
     </tr>
 
@@ -826,7 +843,7 @@ tr.brasil .match {
       <td class="date">25/06/2026</td>
       <td class="time">23:00</td>
       <td><span class="group-pill">Grupo D</span></td>
-      <td class="match">🇵🇾 Paraguai <span class='versus'>x</span> 🇦🇺 Austrália</td>
+      <td class="match"><img class="flag" src="https://flagcdn.com/24x18/py.png" alt="Paraguai" loading="lazy"> Paraguai <span class='versus'>x</span> <img class="flag" src="https://flagcdn.com/24x18/au.png" alt="Austrália" loading="lazy"> Austrália</td>
       <td><span class="status scheduled">Agendado</span></td>
     </tr>
 
@@ -834,7 +851,7 @@ tr.brasil .match {
       <td class="date">26/06/2026</td>
       <td class="time">16:00</td>
       <td><span class="group-pill">Grupo I</span></td>
-      <td class="match">🇳🇴 Noruega <span class='versus'>x</span> 🇫🇷 França</td>
+      <td class="match"><img class="flag" src="https://flagcdn.com/24x18/no.png" alt="Noruega" loading="lazy"> Noruega <span class='versus'>x</span> <img class="flag" src="https://flagcdn.com/24x18/fr.png" alt="França" loading="lazy"> França</td>
       <td><span class="status scheduled">Agendado</span></td>
     </tr>
 
@@ -842,7 +859,7 @@ tr.brasil .match {
       <td class="date">26/06/2026</td>
       <td class="time">16:00</td>
       <td><span class="group-pill">Grupo I</span></td>
-      <td class="match">🇸🇳 Senegal <span class='versus'>x</span> 🇮🇶 Iraque</td>
+      <td class="match"><img class="flag" src="https://flagcdn.com/24x18/sn.png" alt="Senegal" loading="lazy"> Senegal <span class='versus'>x</span> <img class="flag" src="https://flagcdn.com/24x18/iq.png" alt="Iraque" loading="lazy"> Iraque</td>
       <td><span class="status scheduled">Agendado</span></td>
     </tr>
 
@@ -850,7 +867,7 @@ tr.brasil .match {
       <td class="date">26/06/2026</td>
       <td class="time">21:00</td>
       <td><span class="group-pill">Grupo H</span></td>
-      <td class="match">🇺🇾 Uruguai <span class='versus'>x</span> 🇪🇸 Espanha</td>
+      <td class="match"><img class="flag" src="https://flagcdn.com/24x18/uy.png" alt="Uruguai" loading="lazy"> Uruguai <span class='versus'>x</span> <img class="flag" src="https://flagcdn.com/24x18/es.png" alt="Espanha" loading="lazy"> Espanha</td>
       <td><span class="status scheduled">Agendado</span></td>
     </tr>
 
@@ -858,7 +875,7 @@ tr.brasil .match {
       <td class="date">26/06/2026</td>
       <td class="time">21:00</td>
       <td><span class="group-pill">Grupo H</span></td>
-      <td class="match">🇨🇻 Cabo Verde <span class='versus'>x</span> 🇸🇦 Arábia Saudita</td>
+      <td class="match"><img class="flag" src="https://flagcdn.com/24x18/cv.png" alt="Cabo Verde" loading="lazy"> Cabo Verde <span class='versus'>x</span> <img class="flag" src="https://flagcdn.com/24x18/sa.png" alt="Arábia Saudita" loading="lazy"> Arábia Saudita</td>
       <td><span class="status scheduled">Agendado</span></td>
     </tr>
 
@@ -866,7 +883,7 @@ tr.brasil .match {
       <td class="date">27/06/2026</td>
       <td class="time">00:00</td>
       <td><span class="group-pill">Grupo G</span></td>
-      <td class="match">🇳🇿 Nova Zelândia <span class='versus'>x</span> 🇧🇪 Bélgica</td>
+      <td class="match"><img class="flag" src="https://flagcdn.com/24x18/nz.png" alt="Nova Zelândia" loading="lazy"> Nova Zelândia <span class='versus'>x</span> <img class="flag" src="https://flagcdn.com/24x18/be.png" alt="Bélgica" loading="lazy"> Bélgica</td>
       <td><span class="status scheduled">Agendado</span></td>
     </tr>
 
@@ -874,7 +891,7 @@ tr.brasil .match {
       <td class="date">27/06/2026</td>
       <td class="time">00:00</td>
       <td><span class="group-pill">Grupo G</span></td>
-      <td class="match">🇪🇬 Egito <span class='versus'>x</span> 🇮🇷 Irã</td>
+      <td class="match"><img class="flag" src="https://flagcdn.com/24x18/eg.png" alt="Egito" loading="lazy"> Egito <span class='versus'>x</span> <img class="flag" src="https://flagcdn.com/24x18/ir.png" alt="Irã" loading="lazy"> Irã</td>
       <td><span class="status scheduled">Agendado</span></td>
     </tr>
 
@@ -882,7 +899,7 @@ tr.brasil .match {
       <td class="date">27/06/2026</td>
       <td class="time">18:00</td>
       <td><span class="group-pill">Grupo L</span></td>
-      <td class="match">🇵🇦 Panamá <span class='versus'>x</span> 🏴󠁧󠁢󠁥󠁮󠁧󠁿 Inglaterra</td>
+      <td class="match"><img class="flag" src="https://flagcdn.com/24x18/pa.png" alt="Panamá" loading="lazy"> Panamá <span class='versus'>x</span> <img class="flag" src="https://flagcdn.com/24x18/gb-sct.png" alt="Escócia/Inglaterra" loading="lazy">󠁧󠁢󠁥󠁮󠁧󠁿 Inglaterra</td>
       <td><span class="status scheduled">Agendado</span></td>
     </tr>
 
@@ -890,7 +907,7 @@ tr.brasil .match {
       <td class="date">27/06/2026</td>
       <td class="time">18:00</td>
       <td><span class="group-pill">Grupo L</span></td>
-      <td class="match">🇭🇷 Croácia <span class='versus'>x</span> 🇬🇭 Gana</td>
+      <td class="match"><img class="flag" src="https://flagcdn.com/24x18/hr.png" alt="Croácia" loading="lazy"> Croácia <span class='versus'>x</span> <img class="flag" src="https://flagcdn.com/24x18/gh.png" alt="Gana" loading="lazy"> Gana</td>
       <td><span class="status scheduled">Agendado</span></td>
     </tr>
 
@@ -898,7 +915,7 @@ tr.brasil .match {
       <td class="date">27/06/2026</td>
       <td class="time">20:30</td>
       <td><span class="group-pill">Grupo K</span></td>
-      <td class="match">🇨🇴 Colômbia <span class='versus'>x</span> 🇵🇹 Portugal</td>
+      <td class="match"><img class="flag" src="https://flagcdn.com/24x18/co.png" alt="Colômbia" loading="lazy"> Colômbia <span class='versus'>x</span> <img class="flag" src="https://flagcdn.com/24x18/pt.png" alt="Portugal" loading="lazy"> Portugal</td>
       <td><span class="status scheduled">Agendado</span></td>
     </tr>
 
@@ -906,7 +923,7 @@ tr.brasil .match {
       <td class="date">27/06/2026</td>
       <td class="time">20:30</td>
       <td><span class="group-pill">Grupo K</span></td>
-      <td class="match">🇨🇩 RD Congo <span class='versus'>x</span> 🇺🇿 Uzbequistão</td>
+      <td class="match"><img class="flag" src="https://flagcdn.com/24x18/cd.png" alt="RD Congo" loading="lazy"> RD Congo <span class='versus'>x</span> <img class="flag" src="https://flagcdn.com/24x18/uz.png" alt="Uzbequistão" loading="lazy"> Uzbequistão</td>
       <td><span class="status scheduled">Agendado</span></td>
     </tr>
 
@@ -914,7 +931,7 @@ tr.brasil .match {
       <td class="date">27/06/2026</td>
       <td class="time">23:00</td>
       <td><span class="group-pill">Grupo J</span></td>
-      <td class="match">🇯🇴 Jordânia <span class='versus'>x</span> 🇦🇷 Argentina</td>
+      <td class="match"><img class="flag" src="https://flagcdn.com/24x18/jo.png" alt="Jordânia" loading="lazy"> Jordânia <span class='versus'>x</span> <img class="flag" src="https://flagcdn.com/24x18/ar.png" alt="Argentina" loading="lazy"> Argentina</td>
       <td><span class="status scheduled">Agendado</span></td>
     </tr>
 
@@ -922,7 +939,7 @@ tr.brasil .match {
       <td class="date">27/06/2026</td>
       <td class="time">23:00</td>
       <td><span class="group-pill">Grupo J</span></td>
-      <td class="match">🇩🇿 Argélia <span class='versus'>x</span> 🇦🇹 Áustria</td>
+      <td class="match"><img class="flag" src="https://flagcdn.com/24x18/dz.png" alt="Argélia" loading="lazy"> Argélia <span class='versus'>x</span> <img class="flag" src="https://flagcdn.com/24x18/at.png" alt="Áustria" loading="lazy"> Áustria</td>
       <td><span class="status scheduled">Agendado</span></td>
     </tr>
       </tbody>
@@ -930,7 +947,7 @@ tr.brasil .match {
   </div>
 
   <div class="footer">
-    Filtro Somente Brasil corrigido em modo CSS, sem depender de JavaScript.
+    Tabela completa da fase de grupos • Horário de Brasília • Bandeiras reais para todos os times • Brasil destacado.
   </div>
 </div>
 
