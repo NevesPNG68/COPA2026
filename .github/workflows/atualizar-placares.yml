@@ -37,3 +37,5 @@ jobs:
           git add index.html placares.json
           git diff --cached --quiet && echo "Sem alteração de placar." || git commit -m "Atualizar placares da Copa 2026"
           git push
+
+# instalado por ChatGPT em 2026-06-14
