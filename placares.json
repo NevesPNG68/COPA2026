@@ -1,0 +1,15 @@
+{
+  "updatedAt": "2026-06-14T00:00:00-03:00",
+  "source": "inicial; será atualizado pelo GitHub Actions",
+  "scores": {
+    "2026-06-13|qatar|switzerland": "1 x 1",
+    "2026-06-13|switzerland|qatar": "1 x 1",
+    "2026-06-13|brazil|morocco": "1 x 1",
+    "2026-06-13|morocco|brazil": "1 x 1",
+    "2026-06-13|haiti|scotland": "0 x 1",
+    "2026-06-13|scotland|haiti": "1 x 0",
+    "2026-06-14|australia|turkey": "2 x 0",
+    "2026-06-14|turkey|australia": "0 x 2"
+  },
+  "errors": []
+}
