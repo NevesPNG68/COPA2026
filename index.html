@@ -3,6 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate, max-age=0">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
 <title>Copa do Mundo 2026 - Todos os Jogos</title>
 <style>
 :root {
@@ -656,7 +659,7 @@ tr.brasil .match {
       <td><span class="status done">4 x 1</span></td>
     </tr>
 
-    <tr data-start="2026-06-13T16:00:00" data-end="2026-06-13T18:00:00" class="" data-grupo="Grupo B" data-brasil="false">
+    <tr data-start="2026-06-13T16:00:00" data-end="2026-06-13T18:00:00" class="" data-grupo="Grupo B" data-brasil="false" data-result="1 x 1">
       <td class="date">13/06/2026</td>
       <td class="time">16:00</td>
       <td><span class="group-pill">Grupo B</span></td>
@@ -664,7 +667,7 @@ tr.brasil .match {
       <td><span class="status scheduled">Agendada</span></td>
     </tr>
 
-    <tr data-start="2026-06-13T19:00:00" data-end="2026-06-13T21:00:00" class="brasil" data-grupo="Grupo C" data-brasil="true">
+    <tr data-start="2026-06-13T19:00:00" data-end="2026-06-13T21:00:00" class="brasil" data-grupo="Grupo C" data-brasil="true" data-result="1 x 1">
       <td class="date">13/06/2026</td>
       <td class="time">19:00</td>
       <td><span class="group-pill">Grupo C</span></td>
@@ -1214,39 +1217,173 @@ tr.brasil .match {
 
 <script>
 (function () {
+  var ESPN_SCOREBOARD = 'https://site.api.espn.com/apis/site/v2/sports/soccer/fifa.world/scoreboard?dates=';
+  var placaresInternet = Object.create(null);
+  var ultimaBusca = 0;
+  var buscando = false;
+
+  var placaresConfirmados = {
+    '2026-06-13|qatar|switzerland': '1 x 1',
+    '2026-06-13|switzerland|qatar': '1 x 1',
+    '2026-06-13|brazil|morocco': '1 x 1',
+    '2026-06-13|morocco|brazil': '1 x 1'
+  };
+
+  var mapaTimes = {
+    'mexico': 'mexico', 'africa do sul': 'south africa', 'coreia do sul': 'south korea',
+    'tchequia': 'czech republic', 'canada': 'canada', 'bosnia e herzegovina': 'bosnia and herzegovina',
+    'estados unidos': 'united states', 'paraguai': 'paraguay', 'catar': 'qatar', 'qatar': 'qatar',
+    'suica': 'switzerland', 'switzerland': 'switzerland', 'brasil': 'brazil', 'brazil': 'brazil',
+    'marrocos': 'morocco', 'morocco': 'morocco', 'haiti': 'haiti', 'escocia': 'scotland',
+    'australia': 'australia', 'turquia': 'turkey', 'alemanha': 'germany', 'curacao': 'curacao',
+    'holanda': 'netherlands', 'japao': 'japan', 'costa do marfim': 'cote d ivoire',
+    'equador': 'ecuador', 'suecia': 'sweden', 'tunisia': 'tunisia', 'espanha': 'spain',
+    'cabo verde': 'cape verde', 'belgica': 'belgium', 'egito': 'egypt',
+    'arabia saudita': 'saudi arabia', 'uruguai': 'uruguay', 'ira': 'iran',
+    'nova zelandia': 'new zealand', 'franca': 'france', 'senegal': 'senegal',
+    'iraque': 'iraq', 'noruega': 'norway', 'argentina': 'argentina', 'argelia': 'algeria',
+    'austria': 'austria', 'jordania': 'jordan', 'portugal': 'portugal', 'rd congo': 'dr congo',
+    'inglaterra': 'england', 'croacia': 'croatia', 'gana': 'ghana', 'panama': 'panama',
+    'uzbequistao': 'uzbekistan', 'colombia': 'colombia'
+  };
+
+  function normalizarTexto(txt) {
+    return String(txt || '')
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '')
+      .replace(/[\u{1F1E6}-\u{1F1FF}]/gu, '')
+      .replace(/[\u{1F3F4}]/gu, '')
+      .replace(/[^a-zA-Z0-9 ]+/g, ' ')
+      .replace(/\s+/g, ' ')
+      .trim()
+      .toLowerCase();
+  }
+
+  function normalizarTime(nome) {
+    var n = normalizarTexto(nome);
+    return mapaTimes[n] || n;
+  }
+
+  function chaveJogo(data, time1, time2) {
+    return data + '|' + normalizarTime(time1) + '|' + normalizarTime(time2);
+  }
+
+  function timesDaLinha(tr) {
+    var celula = tr.querySelector('.match');
+    if (!celula) return null;
+    var texto = celula.textContent.replace(/\s+/g, ' ').trim();
+    var partes = texto.split(/\s+x\s+/i);
+    if (partes.length < 2) return null;
+    return { casa: partes[0].trim(), fora: partes.slice(1).join(' x ').trim() };
+  }
+
+  function placarParaLinha(tr) {
+    var times = timesDaLinha(tr);
+    if (!times) return '';
+    var data = String(tr.getAttribute('data-start') || '').slice(0, 10);
+    var chave1 = chaveJogo(data, times.casa, times.fora);
+    var chave2 = chaveJogo(data, times.fora, times.casa);
+    return placaresInternet[chave1] || placaresInternet[chave2] ||
+           placaresConfirmados[chave1] || placaresConfirmados[chave2] ||
+           tr.getAttribute('data-result') || '';
+  }
+
   function valorDataHoraBrasilia(isoLocal) {
-    var partes = isoLocal.match(/^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2})/);
+    var partes = String(isoLocal || '').match(/^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2})/);
     if (!partes) return 0;
     return Number(partes[1] + partes[2] + partes[3] + partes[4] + partes[5]);
   }
 
   function agoraBrasiliaNumero() {
     var partes = new Intl.DateTimeFormat('en-CA', {
-      timeZone: 'America/Sao_Paulo',
-      year: 'numeric',
-      month: '2-digit',
-      day: '2-digit',
-      hour: '2-digit',
-      minute: '2-digit',
-      hour12: false
+      timeZone: 'America/Sao_Paulo', year: 'numeric', month: '2-digit', day: '2-digit',
+      hour: '2-digit', minute: '2-digit', hour12: false
     }).formatToParts(new Date());
-
     var mapa = {};
     partes.forEach(function (p) { mapa[p.type] = p.value; });
     var hora = mapa.hour === '24' ? '00' : mapa.hour;
     return Number(mapa.year + mapa.month + mapa.day + hora + mapa.minute);
   }
 
+  function datasParaConsultar() {
+    var agora = agoraBrasiliaNumero();
+    var datas = Object.create(null);
+    document.querySelectorAll('tbody tr[data-start][data-end]').forEach(function (tr) {
+      var inicio = valorDataHoraBrasilia(tr.getAttribute('data-start'));
+      if (inicio <= agora) {
+        var data = String(tr.getAttribute('data-start') || '').slice(0, 10).replace(/-/g, '');
+        if (data) datas[data] = true;
+      }
+    });
+    return Object.keys(datas);
+  }
+
+  async function buscarPlacaresNaInternet(forcar) {
+    var agoraMs = Date.now();
+    if (buscando) return;
+    if (!forcar && agoraMs - ultimaBusca < 15000) return;
+    buscando = true;
+    ultimaBusca = agoraMs;
+
+    var datas = datasParaConsultar();
+    if (!datas.length) {
+      buscando = false;
+      atualizarStatusAutomatico();
+      atualizarJogosExibidos();
+      return;
+    }
+
+    var novoMapa = Object.assign(Object.create(null), placaresInternet);
+
+    await Promise.all(datas.map(async function (data) {
+      try {
+        var url = ESPN_SCOREBOARD + data + '&_=' + Date.now() + Math.random();
+        var resp = await fetch(url, {
+          method: 'GET',
+          cache: 'no-store',
+          mode: 'cors',
+          credentials: 'omit',
+          headers: { 'Accept': 'application/json' }
+        });
+        if (!resp.ok) throw new Error('Falha ao buscar placares ESPN');
+        var dados = await resp.json();
+
+        (dados.events || []).forEach(function (evento) {
+          var competicao = evento.competitions && evento.competitions[0];
+          var competidores = competicao && competicao.competitors;
+          if (!competidores || competidores.length < 2) return;
+
+          var c1 = competidores[0];
+          var c2 = competidores[1];
+          var t1 = (c1.team && (c1.team.displayName || c1.team.shortDisplayName || c1.team.name || c1.team.location)) || '';
+          var t2 = (c2.team && (c2.team.displayName || c2.team.shortDisplayName || c2.team.name || c2.team.location)) || '';
+          var s1 = c1.score;
+          var s2 = c2.score;
+          if (!t1 || !t2 || s1 === undefined || s2 === undefined) return;
+
+          var dataEvento = String(evento.date || '').slice(0, 10) || (data.slice(0,4) + '-' + data.slice(4,6) + '-' + data.slice(6,8));
+          novoMapa[chaveJogo(dataEvento, t1, t2)] = s1 + ' x ' + s2;
+          novoMapa[chaveJogo(dataEvento, t2, t1)] = s2 + ' x ' + s1;
+        });
+      } catch (e) {
+        console.warn('Não foi possível atualizar placares pela internet:', e);
+      }
+    }));
+
+    placaresInternet = novoMapa;
+    buscando = false;
+    atualizarStatusAutomatico();
+    atualizarJogosExibidos();
+  }
+
   function atualizarStatusAutomatico() {
     var agora = agoraBrasiliaNumero();
-    var linhas = document.querySelectorAll('tbody tr[data-start][data-end]');
-
-    linhas.forEach(function (tr) {
+    document.querySelectorAll('tbody tr[data-start][data-end]').forEach(function (tr) {
       var inicio = valorDataHoraBrasilia(tr.getAttribute('data-start'));
       var fim = valorDataHoraBrasilia(tr.getAttribute('data-end'));
       var status = tr.querySelector('.status');
       if (!status) return;
-
+      var placar = placarParaLinha(tr);
       status.classList.remove('scheduled', 'live', 'done');
 
       if (agora < inicio) {
@@ -1256,7 +1393,7 @@ tr.brasil .match {
         status.textContent = 'Ao vivo';
         status.classList.add('live');
       } else {
-        status.textContent = tr.getAttribute('data-result') || 'Resultado pendente';
+        status.textContent = placar || 'Aguardando placar';
         status.classList.add('done');
       }
     });
@@ -1265,12 +1402,10 @@ tr.brasil .match {
   function atualizarJogosExibidos() {
     var contador = document.getElementById('jogosExibidos');
     if (!contador) return;
-
     var total = 0;
     document.querySelectorAll('tbody tr[data-grupo]').forEach(function (tr) {
       if (window.getComputedStyle(tr).display !== 'none') total++;
     });
-
     contador.textContent = String(total);
   }
 
@@ -1278,20 +1413,18 @@ tr.brasil .match {
     document.querySelectorAll('.group-pill').forEach(function (pill) {
       pill.setAttribute('data-short', pill.textContent.replace('Grupo ', '').trim());
     });
-
     var filtro = document.getElementById('grupoFiltro');
     if (filtro) {
-      filtro.addEventListener('change', atualizarJogosExibidos);
-      filtro.addEventListener('input', atualizarJogosExibidos);
+      filtro.addEventListener('change', function () { setTimeout(atualizarJogosExibidos, 80); });
+      filtro.addEventListener('input', function () { setTimeout(atualizarJogosExibidos, 80); });
     }
-
     var toggleBrasil = document.getElementById('toggleBrasil');
     if (toggleBrasil) {
-      toggleBrasil.addEventListener('change', atualizarJogosExibidos);
+      toggleBrasil.addEventListener('change', function () { setTimeout(atualizarJogosExibidos, 80); });
     }
-
     atualizarStatusAutomatico();
-    setTimeout(atualizarJogosExibidos, 80);
+    buscarPlacaresNaInternet(true);
+    setTimeout(atualizarJogosExibidos, 100);
   }
 
   if (document.readyState === 'loading') {
@@ -1300,12 +1433,34 @@ tr.brasil .match {
     prepararTela();
   }
 
+  window.addEventListener('pageshow', function () {
+    atualizarStatusAutomatico();
+    buscarPlacaresNaInternet(true);
+  });
+
+  document.addEventListener('visibilitychange', function () {
+    if (!document.hidden) {
+      atualizarStatusAutomatico();
+      buscarPlacaresNaInternet(true);
+    }
+  });
+
+  window.addEventListener('focus', function () {
+    atualizarStatusAutomatico();
+    buscarPlacaresNaInternet(true);
+  });
+
+  window.addEventListener('online', function () {
+    buscarPlacaresNaInternet(true);
+  });
+
   setInterval(function () {
     atualizarStatusAutomatico();
-    atualizarJogosExibidos();
-  }, 500);
+    buscarPlacaresNaInternet(false);
+  }, 60000);
 })();
 </script>
+
 
 </body>
 </html>
