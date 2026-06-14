@@ -11,6 +11,7 @@ on:
     paths:
       - '.github/workflows/atualizar-placares.yml'
       - 'scripts/atualizar_placares.mjs'
+      - 'scripts/remover_placares_futuros.mjs'
 
 permissions:
   contents: write
@@ -29,6 +30,9 @@ jobs:
 
       - name: Buscar placares, corrigir HTML e gerar JSON
         run: node scripts/atualizar_placares.mjs
+
+      - name: Remover placares de jogos ainda não encerrados
+        run: node scripts/remover_placares_futuros.mjs
 
       - name: Salvar alterações no repositório
         run: |
