@@ -1,0 +1,39 @@
+name: Atualizar placares da Copa 2026
+
+on:
+  schedule:
+    # GitHub usa UTC. Roda a cada 10 minutos.
+    - cron: '*/10 * * * *'
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - '.github/workflows/atualizar-placares.yml'
+      - 'scripts/atualizar_placares.mjs'
+
+permissions:
+  contents: write
+
+jobs:
+  atualizar-placares:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Baixar repositório
+        uses: actions/checkout@v4
+
+      - name: Configurar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Buscar placares, corrigir HTML e gerar JSON
+        run: node scripts/atualizar_placares.mjs
+
+      - name: Salvar alterações no repositório
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add index.html placares.json
+          git diff --cached --quiet && echo "Sem alteração de placar." || git commit -m "Atualizar placares da Copa 2026"
+          git push
