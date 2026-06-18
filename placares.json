@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-06-18T01:38:33.318Z",
+  "updatedAt": "2026-06-18T06:27:15.978Z",
   "source": "GitHub Actions + ESPN scoreboard",
   "scores": {
     "2026-06-11|czech republic|south korea": "1 x 2",
@@ -55,6 +55,7 @@
     "2026-06-17|algeria|argentina": "0 x 3",
     "2026-06-17|argentina|algeria": "3 x 0",
     "2026-06-17|austria|jordan": "3 x 1",
+    "2026-06-17|colombia|uzbekistan": "3 x 1",
     "2026-06-17|croatia|england": "2 x 4",
     "2026-06-17|dr congo|portugal": "1 x 1",
     "2026-06-17|england|croatia": "4 x 2",
@@ -62,10 +63,11 @@
     "2026-06-17|jordan|austria": "1 x 3",
     "2026-06-17|panama|ghana": "0 x 1",
     "2026-06-17|portugal|dr congo": "1 x 1",
+    "2026-06-17|uzbekistan|colombia": "1 x 3",
     "2026-06-18|bosnia herzegovina|switzerland": "0 x 0",
-    "2026-06-18|colombia|uzbekistan": "0 x 0",
+    "2026-06-18|colombia|uzbekistan": "3 x 1",
     "2026-06-18|switzerland|bosnia herzegovina": "0 x 0",
-    "2026-06-18|uzbekistan|colombia": "0 x 0",
+    "2026-06-18|uzbekistan|colombia": "1 x 3",
     "2026-06-19|mexico|south korea": "0 x 0",
     "2026-06-19|south korea|mexico": "0 x 0"
   },
