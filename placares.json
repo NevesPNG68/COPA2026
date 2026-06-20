@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-06-20T01:33:48.089Z",
+  "updatedAt": "2026-06-20T06:01:33.916Z",
   "source": "GitHub Actions + ESPN scoreboard",
   "scores": {
     "2026-06-11|czech republic|south korea": "1 x 2",
@@ -75,6 +75,8 @@
     "2026-06-18|switzerland|bosnia herzegovina": "4 x 1",
     "2026-06-18|uzbekistan|colombia": "1 x 3",
     "2026-06-19|australia|united states": "0 x 2",
+    "2026-06-19|brazil|haiti": "3 x 0",
+    "2026-06-19|haiti|brazil": "0 x 3",
     "2026-06-19|mexico|south korea": "1 x 0",
     "2026-06-19|morocco|scotland": "1 x 0",
     "2026-06-19|scotland|morocco": "0 x 1",
@@ -82,10 +84,12 @@
     "2026-06-19|united states|australia": "2 x 0",
     "2026-06-20|brazil|haiti": "3 x 0",
     "2026-06-20|haiti|brazil": "0 x 3",
-    "2026-06-20|paraguay|turkiye": "0 x 0",
-    "2026-06-20|turkiye|paraguay": "0 x 0",
+    "2026-06-20|paraguay|turkiye": "1 x 0",
+    "2026-06-20|turkiye|paraguay": "0 x 1",
     "2026-06-21|curacao|ecuador": "0 x 0",
-    "2026-06-21|ecuador|curacao": "0 x 0"
+    "2026-06-21|ecuador|curacao": "0 x 0",
+    "2026-06-22|egypt|new zealand": "0 x 0",
+    "2026-06-22|new zealand|egypt": "0 x 0"
   },
   "errors": []
 }
