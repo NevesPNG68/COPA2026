@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-06-21T22:52:31.720Z",
+  "updatedAt": "2026-06-22T00:11:52.564Z",
   "source": "GitHub Actions + ESPN scoreboard",
   "scores": {
     "2026-06-11|czech republic|south korea": "1 x 2",
@@ -93,6 +93,7 @@
     "2026-06-20|sweden|netherlands": "1 x 5",
     "2026-06-20|turkiye|paraguay": "0 x 1",
     "2026-06-21|belgium|iran": "0 x 0",
+    "2026-06-21|cape verde|uruguay": "2 x 2",
     "2026-06-21|curacao|ecuador": "0 x 0",
     "2026-06-21|ecuador|curacao": "0 x 0",
     "2026-06-21|iran|belgium": "0 x 0",
@@ -100,6 +101,7 @@
     "2026-06-21|saudi arabia|spain": "0 x 4",
     "2026-06-21|spain|saudi arabia": "4 x 0",
     "2026-06-21|tunisia|japan": "0 x 4",
+    "2026-06-21|uruguay|cape verde": "2 x 2",
     "2026-06-22|egypt|new zealand": "0 x 0",
     "2026-06-22|new zealand|egypt": "0 x 0",
     "2026-06-23|norway|senegal": "0 x 0",
