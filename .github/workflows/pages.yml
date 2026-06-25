@@ -29,11 +29,6 @@ jobs:
         run: |
           mkdir -p _site
           rsync -av --exclude='.git' --exclude='.github' --exclude='_site' ./ _site/
-          if [ -f _site/index.html ] && [ -f _site/mobile-fix.css ]; then
-            if ! grep -q "mobile-fix.css" _site/index.html; then
-              sed -i 's#</head>#<link rel="stylesheet" href="mobile-fix.css"></head>#' _site/index.html
-            fi
-          fi
           if [ -f _site/index.html ] && [ -f _site/placar-auto.js ]; then
             if ! grep -q "placar-auto.js" _site/index.html; then
               sed -i 's#</body>#<script src="placar-auto.js"></script></body>#' _site/index.html
