@@ -29,6 +29,62 @@ jobs:
         run: |
           mkdir -p _site
           rsync -av --exclude='.git' --exclude='.github' --exclude='_site' ./ _site/
+          python3 - <<'PY'
+          from pathlib import Path
+          p = Path('_site/index.html')
+          html = p.read_text(encoding='utf-8')
+          destaque = r'''
+<style id="destaque-brasil-css">
+  .brasil-destaque {
+    background: linear-gradient(90deg, rgba(34,197,94,.38), rgba(250,204,21,.22), rgba(34,197,94,.12)) !important;
+    border-color: rgba(250,204,21,.75) !important;
+    box-shadow: 0 0 22px rgba(34,197,94,.28), inset 5px 0 0 #22c55e !important;
+  }
+  .match.brasil-destaque {
+    border: 2px solid rgba(250,204,21,.82) !important;
+    position: relative;
+  }
+  .match.brasil-destaque::before {
+    content: "🇧🇷 JOGO DO BRASIL";
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 9px;
+    padding: 6px 10px;
+    border-radius: 999px;
+    background: linear-gradient(135deg, rgba(34,197,94,.42), rgba(250,204,21,.28));
+    border: 1px solid rgba(250,204,21,.72);
+    color: #fef9c3;
+    font-size: 12px;
+    font-weight: 900;
+    letter-spacing: .06em;
+    box-shadow: 0 0 14px rgba(250,204,21,.18);
+  }
+  tr.brasil-destaque td:first-child::before {
+    content: "🇧🇷 ";
+  }
+</style>
+<script id="destaque-brasil-js">
+(function(){
+  function marcarBrasil(){
+    document.querySelectorAll('tr, .match').forEach(function(el){
+      var texto = (el.textContent || '').toLowerCase();
+      var temBrasil = texto.indexOf('brasil') >= 0 || texto.indexOf('brazil') >= 0 || el.querySelector('[alt="Brasil"], [alt="Brazil"]');
+      if (temBrasil) el.classList.add('brasil-destaque');
+    });
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', marcarBrasil);
+  else marcarBrasil();
+  window.addEventListener('load', marcarBrasil);
+  window.addEventListener('focus', marcarBrasil);
+  setInterval(marcarBrasil, 1200);
+})();
+</script>
+'''
+          if 'id="destaque-brasil-css"' not in html:
+              html = html.replace('</head>', destaque + '</head>', 1)
+          p.write_text(html, encoding='utf-8')
+          PY
       - name: Enviar artefato
         uses: actions/upload-pages-artifact@v3
         with:
