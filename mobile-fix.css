@@ -1,0 +1,46 @@
+@media(max-width:700px){
+  body{overflow-x:hidden!important;max-width:100vw!important}
+  .wrap,.hero,.sec{max-width:100%!important}
+  .table{overflow:visible!important;border-top:1px solid var(--l)}
+  table{min-width:0!important;width:100%!important;display:block!important}
+  thead{display:none!important}
+  tbody{display:block!important;width:100%}
+  tbody tr{display:block!important;margin:10px;border:1px solid var(--l);border-radius:14px;overflow:hidden;background:rgba(30,41,59,.72)!important}
+  tbody tr.br,tbody tr.brasil-destaque{background:linear-gradient(135deg,rgba(34,197,94,.35),rgba(250,204,21,.18),rgba(15,23,42,.9))!important}
+  td{display:flex!important;align-items:center;justify-content:space-between;gap:10px;border-bottom:1px solid var(--l)!important;padding:9px 10px!important;white-space:normal!important;word-break:normal!important;font-size:13px!important;line-height:1.35}
+  td:last-child{border-bottom:0!important}
+  td::before{color:var(--m);font-size:10px;text-transform:uppercase;letter-spacing:.06em;font-weight:900;min-width:62px;flex:0 0 62px}
+  #grupos td:nth-child(1)::before{content:'Data'}
+  #grupos td:nth-child(2)::before{content:'Hora'}
+  #grupos td:nth-child(3)::before{content:'Grupo'}
+  #grupos td:nth-child(4)::before{content:'Jogo'}
+  #grupos td:nth-child(5)::before{content:'Status'}
+  #stand td:nth-child(1)::before{content:'#'}
+  #stand td:nth-child(2)::before{content:'Seleção'}
+  #stand td:nth-child(3)::before{content:'Pts'}
+  #stand td:nth-child(4)::before{content:'J'}
+  #stand td:nth-child(5)::before{content:'SG'}
+  #stand td:nth-child(6)::before{content:'GP'}
+  #terceiros td:nth-child(1)::before{content:'#'}
+  #terceiros td:nth-child(2)::before{content:'Grupo'}
+  #terceiros td:nth-child(3)::before{content:'Seleção'}
+  #terceiros td:nth-child(4)::before{content:'Pts'}
+  #terceiros td:nth-child(5)::before{content:'SG'}
+  #terceiros td:nth-child(6)::before{content:'GP'}
+  #terceiros td:nth-child(7)::before{content:'Status'}
+  #mata td:nth-child(1)::before{content:'Jogo'}
+  #mata td:nth-child(2)::before{content:'Data'}
+  #mata td:nth-child(3)::before{content:'Confronto'}
+  #mata td:nth-child(4)::before{content:'Status'}
+  #historico td:nth-child(1)::before{content:'Data'}
+  #historico td:nth-child(2)::before{content:'Fase'}
+  #historico td:nth-child(3)::before{content:'Jogo'}
+  #historico td:nth-child(4)::before{content:'Placar'}
+  #grupos td:nth-child(4),#mata td:nth-child(3),#historico td:nth-child(3){align-items:flex-start;justify-content:flex-start}
+  #grupos td:nth-child(4)::before,#mata td:nth-child(3)::before,#historico td:nth-child(3)::before{padding-top:3px}
+  .team{display:inline-flex;align-items:center;flex-wrap:wrap;max-width:100%}
+  .flagimg,.flag{flex:0 0 auto;width:20px!important;height:15px!important;margin-right:4px!important}
+  .vs{padding:0 4px}
+  .pill{white-space:nowrap;font-size:11px;padding:7px 9px}
+  .box table,.box tbody,.box tr,.box td{width:100%}
+}
