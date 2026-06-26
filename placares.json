@@ -1,6 +1,6 @@
 {
-  "updatedAt": "2026-06-26T15:12:00.000Z",
-  "source": "GitHub Actions + ESPN scoreboard + ajuste data BRT",
+  "updatedAt": "2026-06-26T16:52:25.353Z",
+  "source": "GitHub Actions + ESPN scoreboard",
   "scores": {
     "2026-06-11|czech republic|south korea": "1 x 2",
     "2026-06-11|mexico|south africa": "2 x 0",
@@ -138,6 +138,7 @@
     "2026-06-24|south africa|south korea": "1 x 0",
     "2026-06-24|south korea|south africa": "0 x 1",
     "2026-06-24|switzerland|canada": "2 x 1",
+    "2026-06-25|australia|paraguay": "0 x 0",
     "2026-06-25|cote d ivoire|curacao": "2 x 0",
     "2026-06-25|curacao|cote d ivoire": "0 x 2",
     "2026-06-25|czech republic|mexico": "0 x 3",
@@ -147,7 +148,6 @@
     "2026-06-25|mexico|czech republic": "3 x 0",
     "2026-06-25|netherlands|tunisia": "2 x 0",
     "2026-06-25|paraguay|australia": "0 x 0",
-    "2026-06-25|australia|paraguay": "0 x 0",
     "2026-06-25|south africa|south korea": "1 x 0",
     "2026-06-25|south korea|south africa": "0 x 1",
     "2026-06-25|sweden|japan": "0 x 0",
