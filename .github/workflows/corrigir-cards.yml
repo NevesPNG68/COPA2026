@@ -1,0 +1,45 @@
+name: Corrigir cards superiores
+
+on:
+  push:
+    branches: ["main"]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  corrigir:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Baixar repositório
+        uses: actions/checkout@v4
+      - name: Remover cards sem relevância
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          p = Path('index.html')
+          html = p.read_text(encoding='utf-8')
+          original = html
+          old = '<section class="cards"><div class="card"><div class="lab">Jogos grupos</div><div class="val" id="cTotal">—</div></div><div class="card b"><div class="lab">Jogos Brasil</div><div class="val" id="cBr">—</div></div><div class="card y"><div class="lab">Encerrados</div><div class="val" id="cDone">—</div></div><div class="card"><div class="lab">Placares</div><div class="val" id="upd">—</div></div></section>'
+          new = '<section class="cards"><div class="card"><div class="lab">Jogos grupos</div><div class="val" id="cTotal">—</div></div><div class="card b"><div class="lab">Jogos Brasil</div><div class="val" id="cBr">—</div></div></section>'
+          html = html.replace(old, new)
+          html = html.replace('grid-template-columns:repeat(4,1fr)', 'grid-template-columns:repeat(2,1fr)')
+          html = html.replace(";$('cDone').textContent=G.filter(g=>status(g).done).length", '')
+          html = html.replace("$('upd').textContent='ESPN '+new Date().toLocaleTimeString('pt-BR',{timeZone:'America/Sao_Paulo',hour:'2-digit',minute:'2-digit'});render()", 'render()')
+          html = html.replace(";$('upd').textContent=sc.updatedAt?new Date(sc.updatedAt).toLocaleString('pt-BR',{timeZone:'America/Sao_Paulo',day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit'}):'—'", '')
+          html = html.replace(";$('upd').textContent='ESPN'", '')
+          if html != original:
+              p.write_text(html, encoding='utf-8')
+          PY
+      - name: Commit da correção
+        run: |
+          if git diff --quiet; then
+            echo "Nada a corrigir."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add index.html
+          git commit -m "Excluir cards Encerrados e Placares"
+          git push
