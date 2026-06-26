@@ -32,11 +32,10 @@ jobs:
           rm -f _site/mobile-fix.css
           if [ -f _site/index.html ]; then
             sed -i '/mobile-fix.css/d' _site/index.html
+            sed -i '/placar-auto.js/d' _site/index.html
           fi
           if [ -f _site/index.html ] && [ -f _site/placar-auto.js ]; then
-            if ! grep -q "placar-auto.js" _site/index.html; then
-              sed -i 's#</body>#<script src="placar-auto.js"></script></body>#' _site/index.html
-            fi
+            sed -i 's#</body>#<script src="placar-auto.js?v=20260626c"></script></body>#' _site/index.html
           fi
       - name: Enviar artefato
         uses: actions/upload-pages-artifact@v3
