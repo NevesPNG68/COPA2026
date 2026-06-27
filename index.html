@@ -43,5 +43,7 @@ function configurarToggles(){document.querySelectorAll('[data-toggle]').forEach(
 async function load(){try{let old=await fetch(LEGACY,{cache:'no-store'}).then(r=>r.text());G=parseLegacy(old);try{let sc=await fetch('placares.json?_='+Date.now(),{cache:'no-store'}).then(r=>r.ok?r.json():{});S=Object.assign(Object.create(null),sc.scores||{})}catch(e){S=Object.create(null)}groups.forEach(g=>{if(!$('fGrupo').querySelector(`[value="${g}"]`))$('fGrupo').insertAdjacentHTML('beforeend',`<option value="${g}">Grupo ${g}</option>`)});render();buscarESPN(true)}catch(e){document.querySelector('.wrap').insertAdjacentHTML('afterbegin','<div class="err">Não foi possível carregar a base de jogos. Recarregue a página.</div>');console.error(e)}}
 configurarToggles();$('fGrupo').onchange=render;$('bBr').onclick=()=>{onlyBr=true;$('bBr').classList.add('active');$('bAll').classList.remove('active');render()};$('bAll').onclick=()=>{onlyBr=false;$('bAll').classList.add('active');$('bBr').classList.remove('active');render()};load();setInterval(()=>buscarESPN(false),30000);setInterval(load,90000);window.addEventListener('focus',()=>{load();buscarESPN(true)});document.addEventListener('visibilitychange',()=>{if(!document.hidden){load();buscarESPN(true)}});
 </script>
+
+<!-- VERSAO_GITHUB_ACTIONS_PLACARES_JSON -->
 </body>
 </html>
