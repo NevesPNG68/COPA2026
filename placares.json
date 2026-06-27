@@ -1,6 +1,6 @@
 {
-  "updatedAt": "2026-06-26T16:52:25.353Z",
-  "source": "GitHub Actions + ESPN scoreboard",
+  "updatedAt": "2026-06-27T14:48:00.000Z",
+  "source": "GitHub Actions + ESPN scoreboard + ajuste manual grupos G H I",
   "scores": {
     "2026-06-11|czech republic|south korea": "1 x 2",
     "2026-06-11|mexico|south africa": "2 x 0",
@@ -155,9 +155,21 @@
     "2026-06-25|turkiye|united states": "3 x 2",
     "2026-06-25|united states|turkiye": "2 x 3",
     "2026-06-26|australia|paraguay": "0 x 0",
+    "2026-06-26|cape verde|saudi arabia": "0 x 0",
+    "2026-06-26|france|norway": "4 x 1",
+    "2026-06-26|iraq|senegal": "0 x 5",
+    "2026-06-26|norway|france": "1 x 4",
     "2026-06-26|paraguay|australia": "0 x 0",
+    "2026-06-26|saudi arabia|cape verde": "0 x 0",
+    "2026-06-26|senegal|iraq": "5 x 0",
+    "2026-06-26|spain|uruguay": "1 x 0",
     "2026-06-26|turkiye|united states": "3 x 2",
-    "2026-06-26|united states|turkiye": "2 x 3"
+    "2026-06-26|united states|turkiye": "2 x 3",
+    "2026-06-26|uruguay|spain": "0 x 1",
+    "2026-06-27|belgium|new zealand": "5 x 1",
+    "2026-06-27|egypt|iran": "1 x 1",
+    "2026-06-27|iran|egypt": "1 x 1",
+    "2026-06-27|new zealand|belgium": "1 x 5"
   },
   "errors": []
 }
