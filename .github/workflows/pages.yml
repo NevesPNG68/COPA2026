@@ -37,6 +37,51 @@ jobs:
             if ! grep -q 'hide-confirmado-mata' _site/index.html; then
               sed -i 's|</head>|<style id="hide-confirmado-mata">#mata .pending{display:none!important}</style></head>|' _site/index.html
             fi
+            if ! grep -q 'patch-terceiros-unicos' _site/index.html; then
+              cat >> _site/index.html <<'HTMLPATCH'
+<script id="patch-terceiros-unicos">
+(function(){
+  function iniciarPatch(){
+    if(typeof KO==='undefined'||typeof thirds!=='function'||typeof standings!=='function'||typeof resolved!=='function'||typeof objHtml!=='function')return;
+    if(typeof slot!=='function'||typeof koStatus!=='function'||typeof phaseHint!=='function'||typeof brName!=='function'||typeof bd!=='function')return;
+    window.slotUnicoTerceiro=function(x,st,th,res,usados){
+      if(/^3/.test(x)){
+        var opts=x.slice(1).split('');
+        var t=th.slice(0,8).find(function(z){return opts.indexOf(z.group)>=0&&!usados.has(z.group)});
+        if(!t)t=th.slice(0,8).find(function(z){return opts.indexOf(z.group)>=0});
+        if(t){usados.add(t.group);return{text:t.name,html:team(t.name,t.flag,t.img),name:t.name,flag:t.flag,img:t.img,prov:false};}
+        return{text:'3º melhor de '+opts.join('/'),prov:true};
+      }
+      var r=slot(x,st,th,res);
+      if(r&&r.name)r.prov=false;
+      return r;
+    };
+    window.renderKO=function(st,th,res){
+      var alvo=document.getElementById('ko');
+      if(!alvo)return;
+      alvo.innerHTML='';
+      var by={};
+      KO.forEach(function(m){(by[m.round]||(by[m.round]=[])).push(m)});
+      Object.keys(by).forEach(function(r){
+        var usados=new Set();
+        var h='<div class="phase"><div class="phaseHead"><h3>'+r+'</h3><p>'+phaseHint(r)+'</p></div><div class="table"><table><thead><tr><th>Jogo</th><th>Data</th><th>Confronto</th><th>Status</th></tr></thead><tbody>';
+        by[r].forEach(function(m){
+          var A=slotUnicoTerceiro(m.a,st,th,res,usados);
+          var B=slotUnicoTerceiro(m.b,st,th,res,usados);
+          var s=koStatus(m,A,B);
+          var isbr=brName(A.name||A.text)||brName(B.name||B.text);
+          h+='<tr class="'+(isbr?'br brasil-destaque':'')+'"><td>'+m.id+'</td><td>'+bd(m.date)+' • '+m.time+'</td><td><span class="team">'+objHtml(A)+'</span><span class="vs">x</span><span class="team">'+objHtml(B)+'</span></td><td><span class="pill '+s.cls+'">'+s.txt+'</span></td></tr>';
+        });
+        alvo.insertAdjacentHTML('beforeend',h+'</tbody></table></div></div>');
+      });
+    };
+    if(typeof render==='function')render();
+  }
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',function(){setTimeout(iniciarPatch,700)});else setTimeout(iniciarPatch,700);
+})();
+</script>
+HTMLPATCH
+            fi
           fi
       - name: Enviar artefato
         uses: actions/upload-pages-artifact@v3
