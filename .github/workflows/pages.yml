@@ -35,7 +35,7 @@ jobs:
             sed -i '/mobile-fix.css/d' _site/index.html
             sed -i '/placar-auto.js/d' _site/index.html
             if ! grep -q 'hide-confirmado-mata' _site/index.html; then
-              sed -i 's#</head>#<style id="hide-confirmado-mata">#mata .pending{display:none!important}</style></head>#' _site/index.html
+              sed -i 's|</head>|<style id="hide-confirmado-mata">#mata .pending{display:none!important}</style></head>|' _site/index.html
             fi
           fi
       - name: Enviar artefato
