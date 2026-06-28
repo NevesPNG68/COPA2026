@@ -34,6 +34,29 @@ jobs:
       - name: Remover placares de jogos ainda não encerrados
         run: node scripts/remover_placares_futuros.mjs
 
+      - name: Patch final de placares recentes
+        run: |
+          node - <<'NODE'
+          const fs = require('fs');
+          const file = 'placares.json';
+          const data = JSON.parse(fs.readFileSync(file, 'utf8'));
+          data.source = 'GitHub Actions + ESPN scoreboard + patch final';
+          data.updatedAt = new Date().toISOString();
+          data.scores = data.scores || {};
+          Object.assign(data.scores, {
+            '2026-06-27|jordan|argentina': '1 x 3',
+            '2026-06-27|argentina|jordan': '3 x 1',
+            '2026-06-27|algeria|austria': '3 x 3',
+            '2026-06-27|austria|algeria': '3 x 3',
+            '2026-06-28|jordan|argentina': '1 x 3',
+            '2026-06-28|argentina|jordan': '3 x 1',
+            '2026-06-28|algeria|austria': '3 x 3',
+            '2026-06-28|austria|algeria': '3 x 3'
+          });
+          data.scores = Object.fromEntries(Object.entries(data.scores).sort(([a],[b]) => a.localeCompare(b)));
+          fs.writeFileSync(file, JSON.stringify(data, null, 2) + '\n');
+          NODE
+
       - name: Salvar alterações no repositório
         run: |
           git config user.name "github-actions[bot]"
