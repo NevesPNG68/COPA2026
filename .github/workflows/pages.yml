@@ -37,6 +37,11 @@ jobs:
             if ! grep -q 'hide-confirmado-mata' _site/index.html; then
               sed -i 's|</head>|<style id="hide-confirmado-mata">#mata .pending{display:none!important}</style></head>|' _site/index.html
             fi
+            if ! grep -q 'classificacao-recolhida' _site/index.html; then
+              sed -i 's|<section class="sec" id="classificacao">|<section class="sec recolhido" id="classificacao">|' _site/index.html
+              sed -i 's|<div class="grid" id="stand"></div>|<button class="toggleBtn" data-toggle="classificacao" data-open="Ocultar classificação por grupo" data-closed="Ver classificação por grupo">Ver classificação por grupo</button><div class="grid" id="stand"></div>|' _site/index.html
+              sed -i 's|</head>|<style id="classificacao-recolhida">#classificacao.recolhido #stand,#classificacao.recolhido .note{display:none!important}</style></head>|' _site/index.html
+            fi
             if ! grep -q 'patch-terceiros-unicos' _site/index.html; then
               cat >> _site/index.html <<'HTMLPATCH'
 <script id="patch-terceiros-unicos">
@@ -75,6 +80,7 @@ jobs:
         alvo.insertAdjacentHTML('beforeend',h+'</tbody></table></div></div>');
       });
     };
+    if(typeof configurarToggles==='function')configurarToggles();
     if(typeof render==='function')render();
   }
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',function(){setTimeout(iniciarPatch,700)});else setTimeout(iniciarPatch,700);
