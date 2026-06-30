@@ -1,6 +1,6 @@
 {
-  "updatedAt": "2026-06-30T06:11:38.498Z",
-  "source": "GitHub Actions + ESPN scoreboard + patch final",
+  "updatedAt": "2026-06-30T11:43:00.000Z",
+  "source": "GitHub Actions + ESPN scoreboard + hotfix direto placares mata-mata",
   "scores": {
     "2026-06-11|czech republic|south korea": "1 x 2",
     "2026-06-11|mexico|south africa": "2 x 0",
@@ -177,7 +177,20 @@
     "2026-06-28|algeria|austria": "3 x 3",
     "2026-06-28|argentina|jordan": "3 x 1",
     "2026-06-28|austria|algeria": "3 x 3",
-    "2026-06-28|jordan|argentina": "1 x 3"
+    "2026-06-28|canada|south africa": "1 x 0",
+    "2026-06-28|jordan|argentina": "1 x 3",
+    "2026-06-28|south africa|canada": "0 x 1",
+    "2026-06-29|alemanha|suecia": "1 x 1",
+    "2026-06-29|germany|paraguay": "1 x 1",
+    "2026-06-29|germany|sweden": "1 x 1",
+    "2026-06-29|holanda|marrocos": "1 x 1",
+    "2026-06-29|japan|brazil": "1 x 2",
+    "2026-06-29|marrocos|holanda": "1 x 1",
+    "2026-06-29|morocco|netherlands": "1 x 1",
+    "2026-06-29|netherlands|morocco": "1 x 1",
+    "2026-06-29|paraguay|germany": "1 x 1",
+    "2026-06-29|suecia|alemanha": "1 x 1",
+    "2026-06-29|sweden|germany": "1 x 1"
   },
   "errors": []
 }
