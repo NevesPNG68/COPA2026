@@ -49,10 +49,14 @@ jobs:
             '2026-06-27|argentina|jordan': '3 x 1',
             '2026-06-27|algeria|austria': '3 x 3',
             '2026-06-27|austria|algeria': '3 x 3',
-            '2026-06-28|jordan|argentina': '1 x 3',
-            '2026-06-28|argentina|jordan': '3 x 1',
-            '2026-06-28|algeria|austria': '3 x 3',
-            '2026-06-28|austria|algeria': '3 x 3'
+            '2026-06-28|south africa|canada': '0 x 1',
+            '2026-06-28|canada|south africa': '1 x 0',
+            '2026-06-29|brazil|japan': '2 x 1',
+            '2026-06-29|japan|brazil': '1 x 2',
+            '2026-06-29|germany|paraguay': '1 x 1',
+            '2026-06-29|paraguay|germany': '1 x 1',
+            '2026-06-29|netherlands|morocco': '1 x 1',
+            '2026-06-29|morocco|netherlands': '1 x 1'
           });
           data.scores = Object.fromEntries(Object.entries(data.scores).sort(([a],[b]) => a.localeCompare(b)));
           fs.writeFileSync(jsonFile, JSON.stringify(data, null, 2) + '\n');
@@ -62,12 +66,59 @@ jobs:
 
           html = html.replace('<section class="sec" id="classificacao">', '<section class="sec recolhido" id="classificacao">');
           html = html.replace('<div class="grid" id="stand"></div><div class="note">Critérios do app: pontos, saldo, gols pró e ordem alfabética como desempate temporário. Cartões/sorteio podem ser ajustados depois.</div></section>', '<button class="toggleBtn" data-toggle="classificacao" data-open="Ocultar classificação por grupo" data-closed="Ver classificação por grupo">Ver classificação por grupo</button><div class="grid" id="stand"></div><div class="note">Critérios do app: pontos, saldo, gols pró e ordem alfabética como desempate temporário. Cartões/sorteio podem ser ajustados depois.</div></section>');
-          html = html.replace('.recolhido .tools,.recolhido>.table,.recolhido>.explain{display:none!important}', '.recolhido .tools,.recolhido>.table,.recolhido>.explain{display:none!important}\n#classificacao.recolhido #stand,#classificacao.recolhido .note{display:none!important}');
+          html = html.replace('<section class="sec" id="mata">', '<section class="sec recolhido" id="mata">');
+          html = html.replace('<div id="ko"></div><div class="note">Os confrontos são calculados automaticamente conforme os classificados e os 3ºs colocados definidos.</div></section>', '<button class="toggleBtn" data-toggle="mata" data-open="Ocultar mata-mata" data-closed="Ver mata-mata">Ver mata-mata</button><div id="ko"></div><div class="note">Os confrontos do primeiro mata-mata foram fixados conforme a tabela oficial de jogos.</div></section>');
+          html = html.replace('.recolhido .tools,.recolhido>.table,.recolhido>.explain{display:none!important}', '.recolhido .tools,.recolhido>.table,.recolhido>.explain{display:none!important}\n#classificacao.recolhido #stand,#classificacao.recolhido .note,#mata.recolhido #ko,#mata.recolhido .note{display:none!important}');
 
           html = html.replaceAll("${A.prov?' <span class=\"pill pending\">a confirmar</span>':''}", "");
           html = html.replaceAll("${B.prov?' <span class=\"pill pending\">a confirmar</span>':''}", "");
           html = html.replaceAll("<span class=\"pill pending\">a confirmar</span>", "");
-          html = html.replace('Quando aparecer “a confirmar”, o time está sendo calculado com a classificação atual. Quando o grupo ou jogo anterior fechar, o app substitui automaticamente pelo classificado oficial.', 'Os confrontos são calculados automaticamente conforme os classificados e os 3ºs colocados definidos.');
+          html = html.replace('Quando aparecer “a confirmar”, o time está sendo calculado com a classificação atual. Quando o grupo ou jogo anterior fechar, o app substitui automaticamente pelo classificado oficial.', 'Os confrontos do primeiro mata-mata foram fixados conforme a tabela oficial de jogos.');
+
+          if (!html.includes('OFFICIAL_R32')) {
+            const patch = `
+<script id="official-r32-patch">
+(function(){
+  var OFFICIAL_R32=[
+    {id:73,round:'Primeiro mata-mata',date:'2026-06-28',time:'16:00',home:'África do Sul',away:'Canadá',hf:'🇿🇦',af:'🇨🇦'},
+    {id:74,round:'Primeiro mata-mata',date:'2026-06-29',time:'17:30',home:'Alemanha',away:'Paraguai',hf:'🇩🇪',af:'🇵🇾'},
+    {id:75,round:'Primeiro mata-mata',date:'2026-06-29',time:'22:00',home:'Holanda',away:'Marrocos',hf:'🇳🇱',af:'🇲🇦'},
+    {id:76,round:'Primeiro mata-mata',date:'2026-06-29',time:'14:00',home:'Brasil',away:'Japão',hf:'🇧🇷',af:'🇯🇵'},
+    {id:78,round:'Primeiro mata-mata',date:'2026-06-30',time:'14:00',home:'Costa do Marfim',away:'Noruega',hf:'🇨🇮',af:'🇳🇴'},
+    {id:77,round:'Primeiro mata-mata',date:'2026-06-30',time:'18:00',home:'França',away:'Suécia',hf:'🇫🇷',af:'🇸🇪'},
+    {id:79,round:'Primeiro mata-mata',date:'2026-06-30',time:'22:00',home:'México',away:'Equador',hf:'🇲🇽',af:'🇪🇨'},
+    {id:80,round:'Primeiro mata-mata',date:'2026-07-01',time:'13:00',home:'Inglaterra',away:'RD Congo',hf:'🏴󠁧󠁢󠁥󠁮󠁧󠁿',af:'🇨🇩'},
+    {id:82,round:'Primeiro mata-mata',date:'2026-07-01',time:'17:00',home:'Bélgica',away:'Senegal',hf:'🇧🇪',af:'🇸🇳'},
+    {id:81,round:'Primeiro mata-mata',date:'2026-07-01',time:'21:00',home:'Estados Unidos',away:'Bósnia e Herzegovina',hf:'🇺🇸',af:'🇧🇦'},
+    {id:84,round:'Primeiro mata-mata',date:'2026-07-02',time:'16:00',home:'Espanha',away:'Áustria',hf:'🇪🇸',af:'🇦🇹'},
+    {id:83,round:'Primeiro mata-mata',date:'2026-07-02',time:'20:00',home:'Portugal',away:'Croácia',hf:'🇵🇹',af:'🇭🇷'},
+    {id:85,round:'Primeiro mata-mata',date:'2026-07-03',time:'00:00',home:'Suíça',away:'Argélia',hf:'🇨🇭',af:'🇩🇿'},
+    {id:88,round:'Primeiro mata-mata',date:'2026-07-03',time:'15:00',home:'Austrália',away:'Egito',hf:'🇦🇺',af:'🇪🇬'},
+    {id:86,round:'Primeiro mata-mata',date:'2026-07-03',time:'19:00',home:'Argentina',away:'Cabo Verde',hf:'🇦🇷',af:'🇨🇻'},
+    {id:87,round:'Primeiro mata-mata',date:'2026-07-03',time:'22:30',home:'Colômbia',away:'Gana',hf:'🇨🇴',af:'🇬🇭'}
+  ];
+  function renderOfficialR32(){
+    var alvo=document.getElementById('ko');
+    if(!alvo||typeof status!=='function'||typeof team!=='function'||typeof bd!=='function'||typeof brName!=='function')return;
+    var h='<div class="phase"><div class="phaseHead"><h3>Primeiro mata-mata</h3><p>32 seleções restantes • 16 jogos eliminatórios</p></div><div class="table"><table><thead><tr><th>Data</th><th>Confronto</th><th>Status</th></tr></thead><tbody>';
+    OFFICIAL_R32.forEach(function(m){
+      var g={date:m.date,time:m.time,home:m.home,away:m.away,result:''};
+      var s=status(g);
+      var isbr=brName(m.home)||brName(m.away);
+      h+='<tr class="'+(isbr?'br brasil-destaque':'')+'"><td>'+bd(m.date)+' • '+m.time+'</td><td><span class="team">'+team(m.home,m.hf,'')+'</span><span class="vs">x</span><span class="team">'+team(m.away,m.af,'')+'</span></td><td><span class="pill '+s.cls+'">'+s.txt+'</span></td></tr>';
+    });
+    h+='</tbody></table></div></div>';
+    alvo.innerHTML=h;
+  }
+  window.renderKO=function(){renderOfficialR32();};
+  var oldRender=window.render;
+  window.render=function(){if(typeof oldRender==='function')oldRender();renderOfficialR32();};
+  setTimeout(renderOfficialR32,500);
+  setInterval(renderOfficialR32,30000);
+})();
+</script>`;
+            html = html.replace('</body>', patch + '\n</body>');
+          }
 
           fs.writeFileSync(htmlFile, html);
           NODE
