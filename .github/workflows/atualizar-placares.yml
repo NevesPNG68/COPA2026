@@ -55,8 +55,14 @@ jobs:
             '2026-06-29|japan|brazil': '1 x 2',
             '2026-06-29|germany|paraguay': '1 x 1',
             '2026-06-29|paraguay|germany': '1 x 1',
+            '2026-06-29|germany|sweden': '1 x 1',
+            '2026-06-29|sweden|germany': '1 x 1',
+            '2026-06-29|alemanha|suecia': '1 x 1',
+            '2026-06-29|suecia|alemanha': '1 x 1',
             '2026-06-29|netherlands|morocco': '1 x 1',
-            '2026-06-29|morocco|netherlands': '1 x 1'
+            '2026-06-29|morocco|netherlands': '1 x 1',
+            '2026-06-29|holanda|marrocos': '1 x 1',
+            '2026-06-29|marrocos|holanda': '1 x 1'
           });
           data.scores = Object.fromEntries(Object.entries(data.scores).sort(([a],[b]) => a.localeCompare(b)));
           fs.writeFileSync(jsonFile, JSON.stringify(data, null, 2) + '\n');
