@@ -34,7 +34,7 @@ jobs:
       - name: Remover placares de jogos ainda não encerrados
         run: node scripts/remover_placares_futuros.mjs
 
-      - name: Patch final de placares recentes e mata-mata
+      - name: Patch final de placares recentes e index
         run: |
           node - <<'NODE'
           const fs = require('fs');
@@ -59,9 +59,16 @@ jobs:
 
           const htmlFile = 'index.html';
           let html = fs.readFileSync(htmlFile, 'utf8');
+
+          html = html.replace('<section class="sec" id="classificacao">', '<section class="sec recolhido" id="classificacao">');
+          html = html.replace('<div class="grid" id="stand"></div><div class="note">Critérios do app: pontos, saldo, gols pró e ordem alfabética como desempate temporário. Cartões/sorteio podem ser ajustados depois.</div></section>', '<button class="toggleBtn" data-toggle="classificacao" data-open="Ocultar classificação por grupo" data-closed="Ver classificação por grupo">Ver classificação por grupo</button><div class="grid" id="stand"></div><div class="note">Critérios do app: pontos, saldo, gols pró e ordem alfabética como desempate temporário. Cartões/sorteio podem ser ajustados depois.</div></section>');
+          html = html.replace('.recolhido .tools,.recolhido>.table,.recolhido>.explain{display:none!important}', '.recolhido .tools,.recolhido>.table,.recolhido>.explain{display:none!important}\n#classificacao.recolhido #stand,#classificacao.recolhido .note{display:none!important}');
+
           html = html.replaceAll("${A.prov?' <span class=\"pill pending\">a confirmar</span>':''}", "");
           html = html.replaceAll("${B.prov?' <span class=\"pill pending\">a confirmar</span>':''}", "");
           html = html.replaceAll("<span class=\"pill pending\">a confirmar</span>", "");
+          html = html.replace('Quando aparecer “a confirmar”, o time está sendo calculado com a classificação atual. Quando o grupo ou jogo anterior fechar, o app substitui automaticamente pelo classificado oficial.', 'Os confrontos são calculados automaticamente conforme os classificados e os 3ºs colocados definidos.');
+
           fs.writeFileSync(htmlFile, html);
           NODE
 
